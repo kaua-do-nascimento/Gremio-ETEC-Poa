@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+
+    background:#0d0d0d;
+
+    color:#fff;
+
+    font-family:"Outfit",sans-serif;
+
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+    height:75px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 7%;
+
+    gap:12px;
+
+    border-bottom:
+        1px solid #222;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+.logo-topo{
+    width:35px;
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#ccff00;
+
+    font-size:25px;
+}
+
+
+header span{
+    color:#ddd;
+
+    font-size:17px;
+    font-weight:500;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.auth-page{
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:40px 20px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+/* EFEITO VERDE AO FUNDO */
+
+.auth-page::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:#ccff00;
+
+    border-radius:50%;
+
+    filter:blur(150px);
+
+    opacity:.06;
+
+    top:-300px;
+    right:-200px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.auth-card{
+    width:100%;
+    max-width:440px;
+
+    background:#1c1c1c;
+
+    border-radius:22px;
+
+    padding:
+        48px
+        42px;
+
+    position:relative;
+
+    z-index:1;
+
+    box-shadow:
+        0
+        20px
+        60px
+        rgba(0,0,0,.4);
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.auth-card h1{
+    color:#fff;
+
+    font-size:40px;
+
+    font-weight:300;
+
+    line-height:1.05;
+
+    margin-bottom:15px;
+}
+
+
+.auth-card h1 strong{
+    color:#ccff00;
+
+    font-family:"Anton",sans-serif;
+
+    font-size:46px;
+
+    font-weight:400;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================
+   DESCRIÇÃO
+========================= */
+
+.auth-card p{
+    color:#888;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    margin-bottom:32px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+form{
+    width:100%;
+}
+
+
+/* INPUT */
+
+.input-box{
+    width:100%;
+    height:55px;
+
+    display:flex;
+    align-items:center;
+
+    background:#151515;
+
+    border:
+        1px solid
+        #333;
+
+    border-radius:10px;
+
+    padding:0 17px;
+
+    margin-bottom:16px;
+
+    transition:.2s;
+}
+
+
+.input-box:focus-within{
+    border-color:#ccff00;
+
+    box-shadow:
+        0
+        0
+        0
+        3px
+        rgba(204,255,0,.05);
+}
+
+
+.input-box i{
+    width:25px;
+
+    color:#777;
+
+    font-size:17px;
+}
+
+
+.input-box input{
+    width:100%;
+    height:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#eee;
+
+    font-family:"Outfit",sans-serif;
+
+    font-size:14px;
+
+    padding-left:8px;
+}
+
+
+.input-box input::placeholder{
+    color:#666;
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+button{
+    width:100%;
+    height:54px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#ccff00;
+
+    color:#111;
+
+    font-family:"Outfit",sans-serif;
+
+    font-size:15px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    margin-top:8px;
+
+    transition:.2s;
+}
+
+
+button:hover{
+    opacity:.88;
+
+    transform:
+        translateY(-2px);
+}
+
+
+button:active{
+    transform:
+        translateY(0);
+}
+
+
+/* =========================
+   LINK INFERIOR
+========================= */
+
+.bottom-link{
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+
+    margin-top:28px;
+}
+
+
+.bottom-link a{
+    color:#ccff00;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    margin-left:5px;
+
+    transition:.2s;
+}
+
+
+.bottom-link a:hover{
+    text-decoration:underline;
+
+    opacity:.8;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+
+    color:#555;
+
+    font-size:12px;
+
+    padding:25px;
+
+    border-top:
+        1px solid
+        #181818;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:500px){
+
+    header{
+        padding:0 25px;
+    }
+
+
+    .auth-page{
+        padding:25px 18px;
+    }
+
+
+    .auth-card{
+        padding:
+            40px
+            25px;
+    }
+
+
+    .auth-card h1{
+        font-size:34px;
+    }
+
+
+    .auth-card h1 strong{
+        font-size:40px;
+    }
+
+}

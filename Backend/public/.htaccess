@@ -1,0 +1,20 @@
+# ============================================================
+# Front controller: todas as requisições que caem nesta pasta
+# (Backend/public) são direcionadas para o index.php, que decide
+# qual rota da API executar (routes/api.php).
+#
+# Também garante que o cabeçalho "Authorization" (usado pelo token
+# de login) chegue até o PHP — o Apache às vezes descarta esse
+# cabeçalho por padrão.
+# ============================================================
+
+RewriteEngine On
+
+# Preserva o cabeçalho Authorization
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Se o arquivo ou pasta pedido não existir fisicamente, manda tudo para index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

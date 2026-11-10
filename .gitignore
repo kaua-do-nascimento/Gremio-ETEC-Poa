@@ -1,0 +1,60 @@
+# ============================================================
+# .gitignore — Grêmio ETEC Poá (PHP + MySQL + Wamp, sem dependências)
+# ============================================================
+
+# ---- Configuração local e segredos (NUNCA versionar) ----
+.env
+.env.*
+!.env.example
+Backend/config/*.local.php
+
+# Utilitário temporário que continha senha fixa (use criar-admin.php)
+Backend/tests/criar-admin-web.php
+
+# ---- Banco de dados: backups e dumps com dados ----
+# (os scripts oficiais database/gremio_etec_poa.sql e database/*.sql SÃO versionados)
+*.bak
+*.backup
+*.sql.gz
+*.sql.zip
+*.sql.7z
+backup_*.sql
+dump_*.sql
+*_backup*.sql
+*-backup*.sql
+database/backup/
+database/backups/
+
+# ---- Uploads: mantém a pasta, ignora o conteúdo enviado por usuários ----
+uploads/*
+!uploads/.gitkeep
+
+# ---- Logs, cache e temporários ----
+*.log
+logs/
+error_log
+php_errors.log
+tmp/
+temp/
+cache/
+sessions/
+*.tmp
+*.swp
+*~
+
+# ---- Dependências (não usadas hoje; ficam fora do Git se forem adicionadas) ----
+vendor/
+node_modules/
+
+# ---- PHPUnit (caso a equipe adote testes automatizados) ----
+.phpunit.result.cache
+
+# ---- Editores e sistema operacional ----
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+desktop.ini

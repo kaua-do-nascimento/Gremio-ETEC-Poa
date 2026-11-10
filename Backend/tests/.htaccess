@@ -1,0 +1,8 @@
+# Bloqueia o acesso direto por navegador a esta pasta.
+# Os arquivos continuam sendo usados normalmente pelo PHP (require/include),
+# que lê direto do disco e não passa pelo Apache.
+# Se o Apache retornar "Erro 500" por causa deste arquivo, apague-o: ele é
+# apenas uma proteção extra (o AllowOverride do seu servidor não permite).
+<IfModule mod_alias.c>
+    RedirectMatch 404 .*
+</IfModule>

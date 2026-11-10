@@ -1,0 +1,54 @@
+name: Solicitar uma funcionalidade
+description: Sugerir uma nova funcionalidade ou melhoria
+title: "[Funcionalidade] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qual problema ou necessidade isso resolve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Como deveria funcionar?
+      description: Descreva a solução esperada (telas, regras, quem pode usar).
+    validations:
+      required: true
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Critérios de aceitação
+      placeholder: |
+        - [ ] O administrador consegue ...
+        - [ ] O aluno vê ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Áreas envolvidas
+      multiple: true
+      options:
+        - Backend (PHP/API)
+        - Frontend (HTML/CSS/JS)
+        - Banco de dados
+        - Design
+        - Documentação
+    validations:
+      required: true
+  - type: dropdown
+    id: prioridade
+    attributes:
+      label: Prioridade sugerida
+      options:
+        - Alta
+        - Média
+        - Baixa
+    validations:
+      required: true
+  - type: textarea
+    id: extras
+    attributes:
+      label: Referências (protótipos, exemplos, links)

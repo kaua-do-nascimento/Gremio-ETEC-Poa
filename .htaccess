@@ -1,0 +1,6 @@
+# Impede que o navegador baixe arquivos internos do repositório
+# (.git, .env e afins) quando o projeto roda dentro da pasta "www".
+# Se o Apache retornar "Erro 500" por causa deste arquivo, apague-o.
+<IfModule mod_alias.c>
+    RedirectMatch 404 "(^|/)\.(git|env)"
+</IfModule>

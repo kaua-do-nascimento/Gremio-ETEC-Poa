@@ -1,0 +1,73 @@
+name: Relatar um bug
+description: Algo que existe no sistema não está funcionando como deveria
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por relatar. **Não inclua senhas, tokens, RMs ou e-mails reais** nos textos e imagens.
+  - type: textarea
+    id: descricao
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o problema com clareza.
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      placeholder: |
+        1. Entre como administrador
+        2. Abra "Financeiro"
+        3. Clique em "Nova movimentação"
+        4. ...
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Resultado esperado
+    validations:
+      required: true
+  - type: textarea
+    id: obtido
+    attributes:
+      label: Resultado obtido
+      description: Inclua mensagens de erro (tela, console do navegador F12 ou resposta da API).
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área afetada
+      multiple: true
+      options:
+        - Backend (PHP/API)
+        - Frontend (HTML/CSS/JS)
+        - Banco de dados
+        - Autenticação / permissões
+        - Outra
+    validations:
+      required: true
+  - type: dropdown
+    id: prioridade
+    attributes:
+      label: Prioridade sugerida
+      options:
+        - Alta (impede o uso)
+        - Média
+        - Baixa
+    validations:
+      required: true
+  - type: input
+    id: ambiente
+    attributes:
+      label: Ambiente
+      description: Versão do PHP, MySQL/MariaDB (e porta) e navegador.
+      placeholder: "PHP 8.5, MariaDB (porta 3307), Chrome"
+  - type: textarea
+    id: anexos
+    attributes:
+      label: Prints ou observações adicionais

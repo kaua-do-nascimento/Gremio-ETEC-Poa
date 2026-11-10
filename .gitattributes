@@ -1,0 +1,20 @@
+# Normaliza finais de linha: o Git guarda LF e o Windows continua com CRLF no seu disco.
+* text=auto
+
+*.php  text
+*.js   text
+*.css  text
+*.sql  text
+*.md   text
+*.yml  text
+*.json text
+
+# Arquivos binários (não alterar)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.zip  binary
+*.pdf  binary

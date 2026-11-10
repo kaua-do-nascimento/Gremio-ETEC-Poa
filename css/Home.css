@@ -1,0 +1,1159 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@700&family=Nunito:wght@400;600;700;800&display=swap');
+
+
+/* =====================
+   CONFIGURAÇÕES
+===================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --verde: #ccff00;
+    --preto: #0f0f0f;
+    --card: #1a1a1a;
+    --borda: #252525;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: var(--preto);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+/* =====================
+   MENU
+===================== */
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 50;
+
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 1.5rem;
+
+    background: rgba(15, 15, 15, 0.92);
+
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+/* =====================
+   LOGO
+===================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+}
+
+
+.logo img {
+    width: 36px;
+    height: 36px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+}
+
+
+.logo span {
+    font-family: 'Archivo Black', sans-serif;
+
+    text-transform: uppercase;
+
+    letter-spacing: -0.02em;
+
+    font-size: 1.1rem;
+
+    color: var(--verde);
+}
+
+
+/* =====================
+   LINKS DO MENU
+===================== */
+
+.links-menu {
+    display: none;
+
+    align-items: center;
+
+    gap: 2rem;
+}
+
+
+.links-menu a {
+    color: #666;
+
+    font-size: 0.875rem;
+
+    font-weight: 600;
+
+    transition: color 0.2s;
+}
+
+
+.links-menu a:hover {
+    color: #fff;
+}
+
+
+/* =====================
+   BOTÕES DO MENU
+===================== */
+
+.botoes-menu {
+    display: none;
+
+    align-items: center;
+
+    gap: 0.75rem;
+}
+
+
+.botoes-menu a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.85rem;
+
+    padding: 0.6rem 1.35rem;
+
+    border-radius: 0.85rem;
+
+    transition: all 0.2s;
+}
+
+
+/* ENTRAR */
+
+.botoes-menu .entrar {
+    background: transparent;
+
+    color: #666;
+
+    font-weight: 700;
+}
+
+
+.botoes-menu .entrar:hover {
+    color: #fff;
+}
+
+
+/* CADASTRAR */
+
+.botoes-menu .cadastrar {
+    background: var(--verde);
+
+    color: var(--preto);
+
+    font-family: 'Archivo Black', sans-serif;
+}
+
+
+.botoes-menu .cadastrar:hover {
+    opacity: 0.9;
+
+    transform: scale(1.03);
+}
+
+
+/* =====================
+   BOTÃO MENU MOBILE
+===================== */
+
+.menu-mobile {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 0.5rem;
+}
+
+
+.menu-mobile span {
+    display: block;
+
+    width: 20px;
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: var(--verde);
+
+    transition: all 0.2s;
+}
+
+
+.menu-mobile.ativo span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 6px);
+}
+
+
+.menu-mobile.ativo span:nth-child(2) {
+    opacity: 0;
+}
+
+
+.menu-mobile.ativo span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -6px);
+}
+
+
+/* =====================
+   MENU MOBILE
+===================== */
+
+.mobile {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 40;
+
+    top: 64px;
+
+    background: var(--preto);
+
+    display: none;
+
+    flex-direction: column;
+
+    padding: 1.5rem;
+}
+
+
+.mobile.ativo {
+    display: flex;
+}
+
+
+.mobile nav {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+
+.mobile nav a {
+    color: #888;
+
+    font-family: 'Archivo Black', sans-serif;
+
+    font-size: 1.5rem;
+
+    padding: 0.75rem 0;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.botoes-mobile {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.75rem;
+
+    margin-top: 1.5rem;
+}
+
+
+.botoes-mobile a {
+    width: 100%;
+
+    padding: 0.85rem;
+
+    text-align: center;
+
+    border-radius: 0.85rem;
+
+    font-family: 'Archivo Black', sans-serif;
+}
+
+
+/* BOTÃO ENTRAR MOBILE */
+
+.botoes-mobile .entrar {
+    background: transparent;
+
+    color: var(--verde);
+
+    border: 1px solid rgba(204, 255, 0, 0.3);
+}
+
+
+/* BOTÃO CADASTRAR MOBILE */
+
+.botoes-mobile .cadastrar {
+    background: var(--verde);
+
+    color: var(--preto);
+}
+
+
+/* =====================
+   INÍCIO
+===================== */
+
+.inicio {
+    position: relative;
+
+    min-height: 640px;
+
+    display: flex;
+
+    align-items: stretch;
+
+    overflow: hidden;
+
+    padding-top: 64px;
+}
+
+
+/* =====================
+   LADO ESQUERDO
+===================== */
+
+.lado-esquerdo {
+    position: relative;
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 5rem 2rem;
+
+    z-index: 10;
+}
+
+
+/* =====================
+   TÍTULO
+===================== */
+
+.lado-esquerdo h1 {
+    font-family: 'Archivo Black', sans-serif;
+
+    text-transform: uppercase;
+
+    letter-spacing: -0.03em;
+
+    font-size: 3.25rem;
+
+    line-height: 0.98;
+
+    margin-bottom: 1.5rem;
+}
+
+
+.titulo-branco {
+    color: #fff;
+}
+
+
+.titulo-verde {
+    color: var(--verde);
+}
+
+
+/* =====================
+   TEXTO INICIAL
+===================== */
+
+.texto-inicio {
+    color: #888;
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+    max-width: 30rem;
+
+    margin-bottom: 2.5rem;
+}
+
+
+/* =====================
+   BOTÃO PRINCIPAL
+===================== */
+
+.botao-principal {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+
+    background: var(--verde);
+
+    color: var(--preto);
+
+    font-family: 'Archivo Black', sans-serif;
+
+    font-size: 1rem;
+
+    padding: 1.05rem 2.1rem;
+
+    border-radius: 1rem;
+
+    transition: all 0.2s;
+}
+
+
+.botao-principal:hover {
+    opacity: 0.9;
+
+    transform: scale(1.03);
+}
+
+
+/* =====================
+   LADO DIREITO
+===================== */
+
+.lado-direito {
+    display: none;
+
+    flex-shrink: 0;
+
+    width: 46%;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            160deg,
+            #d4ff00 0%,
+            var(--verde) 50%,
+            #b8e800 100%
+        );
+}
+
+
+/* =====================
+   ONDA
+===================== */
+
+.onda {
+    position: absolute;
+
+    inset-block: 0;
+
+    left: 0;
+
+    width: 8rem;
+
+    height: 100%;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+.onda svg {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+
+
+/* =====================
+   BEM VINDO
+===================== */
+
+.bem-vindo {
+    position: relative;
+
+    z-index: 10;
+
+    font-family: 'Caveat', cursive;
+
+    font-weight: 700;
+
+    font-size: 3rem;
+
+    color: #000;
+
+    margin-bottom: 1.5rem;
+
+    text-shadow:
+        0 1px 1px
+        rgba(255, 255, 255, 0.2);
+}
+
+
+/* =====================
+   LOGO CENTRAL
+===================== */
+
+.logo-central {
+    position: relative;
+
+    z-index: 20;
+
+    width: 40rem;
+    height: 40rem;
+
+    object-fit: contain;
+}
+
+
+/* =====================
+   RECURSOS
+===================== */
+
+.recursos {
+    padding: 6rem 1.5rem;
+}
+
+
+.conteudo-recursos {
+    max-width: 72rem;
+
+    margin: 0 auto;
+}
+
+
+/* =====================
+   TÍTULO DOS RECURSOS
+===================== */
+
+.titulo-recursos {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1.5rem;
+
+    margin-bottom: 3.5rem;
+}
+
+
+.texto-pequeno {
+    font-family: 'Archivo Black', sans-serif;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.15em;
+
+    font-size: 0.72rem;
+
+    color: var(--verde);
+
+    margin-bottom: 0.75rem;
+}
+
+
+.titulo-recursos h2 {
+    font-family: 'Archivo Black', sans-serif;
+
+    text-transform: uppercase;
+
+    font-size: 2.5rem;
+
+    line-height: 1.15;
+
+    color: #fff;
+}
+
+
+.descricao-recursos {
+    color: #666;
+
+    font-size: 0.9rem;
+
+    line-height: 1.7;
+
+    max-width: 24rem;
+}
+
+
+/* =====================
+   CARDS
+===================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(1, 1fr);
+
+    gap: 1rem;
+}
+
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 1rem;
+
+    padding: 1.5rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.75rem;
+
+    transition: all 0.2s;
+}
+
+
+.card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(204, 255, 0, 0.3);
+}
+
+
+/* =====================
+   ÍCONES
+===================== */
+
+.icone {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 0.85rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
+
+    background:
+        rgba(204, 255, 0, 0.08);
+
+    border:
+        1px solid
+        rgba(204, 255, 0, 0.2);
+}
+
+
+.card h3 {
+    font-family:
+        'Archivo Black',
+        sans-serif;
+
+    font-size: 1rem;
+
+    color: #fff;
+}
+
+
+.card p {
+    font-size: 0.875rem;
+
+    line-height: 1.6;
+
+    color: #777;
+}
+
+
+/* =====================
+   COMO FUNCIONA
+===================== */
+
+.como-funciona {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 7rem 0;
+
+    background: var(--verde);
+}
+
+
+.conteudo-como-funciona {
+    position: relative;
+
+    z-index: 10;
+
+    max-width: 64rem;
+
+    margin: 0 auto;
+
+    padding: 0 1.5rem;
+}
+
+
+/* =====================
+   TÍTULO
+===================== */
+
+.titulo-como-funciona {
+    text-align: center;
+
+    font-family:
+        'Caveat',
+        cursive;
+
+    font-weight: 700;
+
+    font-size: 3rem;
+
+    color: #000;
+
+    margin-bottom: 3.5rem;
+}
+
+
+/* =====================
+   PASSOS
+===================== */
+
+.passos {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 2.5rem;
+}
+
+
+.passo {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0.5rem;
+}
+
+
+.numero {
+    font-family:
+        'Archivo Black',
+        sans-serif;
+
+    font-size: 3.5rem;
+
+    line-height: 1;
+
+    color: #000;
+
+    opacity: 0.25;
+}
+
+
+.passo h3 {
+    font-family:
+        'Archivo Black',
+        sans-serif;
+
+    text-transform: uppercase;
+
+    font-size: 1.15rem;
+
+    color: #000;
+
+    margin-top: -0.75rem;
+}
+
+
+.passo p {
+    font-size: 0.875rem;
+
+    line-height: 1.6;
+
+    color: #222;
+}
+
+
+/* =====================
+   PARTE FINAL
+===================== */
+
+.final {
+    padding: 6rem 1.5rem;
+}
+
+
+.card-final {
+    max-width: 60rem;
+
+    margin: 0 auto;
+
+    background: var(--verde);
+
+    border-radius: 1.75rem;
+
+    padding: 3rem 1.75rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* =====================
+   TÍTULO FINAL
+===================== */
+
+.titulo-final {
+    font-family:
+        'Caveat',
+        cursive;
+
+    font-weight: 700;
+
+    font-size: 2.75rem;
+
+    color: #000;
+
+    margin-bottom: 1rem;
+}
+
+
+.texto-final {
+    color:
+        rgba(0, 0, 0, 0.6);
+
+    font-size: 1rem;
+
+    max-width: 26rem;
+
+    margin-bottom: 2.5rem;
+}
+
+
+/* =====================
+   BOTÕES FINAIS
+===================== */
+
+.botoes-final {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 1rem;
+
+    justify-content: center;
+}
+
+
+.criar-conta,
+.ja-tenho-conta {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family:
+        'Archivo Black',
+        sans-serif;
+
+    font-size: 1rem;
+
+    padding: 1.05rem 2.6rem;
+
+    border-radius: 1rem;
+
+    transition: all 0.2s;
+}
+
+
+/* CRIAR CONTA */
+
+.criar-conta {
+    background: var(--preto);
+
+    color: var(--verde);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.criar-conta:hover {
+    transform: scale(1.05);
+}
+
+
+/* JÁ TENHO CONTA */
+
+.ja-tenho-conta {
+    background: transparent;
+
+    color: #000;
+
+    border:
+        2px solid
+        rgba(0, 0, 0, 0.2);
+}
+
+
+.ja-tenho-conta:hover {
+    background:
+        rgba(0, 0, 0, 0.08);
+}
+
+
+/* =====================
+   RODAPÉ
+===================== */
+
+.rodape {
+    padding: 3rem 1.5rem;
+
+    border-top:
+        1px solid
+        var(--borda);
+}
+
+
+.conteudo-rodape {
+    max-width: 72rem;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    text-align: center;
+}
+
+
+/* =====================
+   LOGO RODAPÉ
+===================== */
+
+.logo-rodape {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    font-family:
+        'Archivo Black',
+        sans-serif;
+
+    text-transform: uppercase;
+
+    font-size: 0.9rem;
+
+    color: var(--verde);
+}
+
+
+.logo-rodape img {
+    width: 28px;
+    height: 28px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+}
+
+
+.logo-rodape span {
+    color: var(--verde);
+}
+
+
+/* TEXTO DO RODAPÉ */
+
+.conteudo-rodape > p {
+    font-size: 0.72rem;
+
+    color: #444;
+}
+
+
+/* =====================
+   RESPONSIVO
+===================== */
+
+@media (min-width: 768px) {
+
+
+    /* MENU */
+
+    .links-menu,
+    .botoes-menu {
+        display: flex;
+    }
+
+
+    .menu-mobile {
+        display: none;
+    }
+
+
+    /* INÍCIO */
+
+    .inicio {
+        min-height: 760px;
+    }
+
+
+    .lado-direito {
+        display: flex;
+    }
+
+
+    .lado-esquerdo {
+        padding: 5rem 4rem;
+    }
+
+
+    .lado-esquerdo h1 {
+        font-size: 5rem;
+    }
+
+
+    /* RECURSOS */
+
+    .recursos {
+        padding: 6rem 3rem;
+    }
+
+
+    .titulo-recursos {
+        flex-direction: row;
+
+        align-items: flex-end;
+
+        justify-content: space-between;
+    }
+
+
+    .cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* PASSOS */
+
+    .passos {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    /* FINAL */
+
+    .card-final {
+        padding: 5rem;
+    }
+
+}
+
+
+@media (min-width: 1024px) {
+
+
+    /* TÍTULO */
+
+    .lado-esquerdo h1 {
+        font-size: 6rem;
+    }
+
+
+    .lado-esquerdo {
+        padding: 5rem 6rem;
+    }
+
+
+    /* RECURSOS */
+
+    .recursos {
+        padding: 6rem 6rem;
+    }
+
+
+    .cards {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+
+    .titulo-recursos h2 {
+        font-size: 3rem;
+    }
+
+
+    /* LOGO CENTRAL */
+
+    .logo-central {
+        width: 20rem;
+        height: 20rem;
+    }
+
+}

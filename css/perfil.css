@@ -1,0 +1,248 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Anton&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0d0d0d;
+    color: #ddd;
+    font-family: "Outfit", sans-serif;
+    min-height: 100vh;
+}
+
+/* CABEÇALHO */
+
+.cabecalho {
+    width: 100%;
+    background: #0d0d0d;
+    border-bottom: 1px solid #292929;
+}
+
+.conteudo-cabecalho {
+    max-width: 1100px;
+    margin: auto;
+    padding: 22px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #ccff00;
+    font-family: "Anton", sans-serif;
+    font-size: 23px;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.voltar {
+    color: #ccff00;
+    border: 1.5px solid #ccff00;
+    border-radius: 999px;
+    padding: 9px 22px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.voltar:hover {
+    background: #ccff00;
+    color: #111;
+}
+
+/* CONTEÚDO */
+
+.container {
+    width: 100%;
+    max-width: 950px;
+    margin: 55px auto;
+    padding: 0 25px;
+}
+
+.titulo-pagina {
+    color: #ccff00;
+    font-family: "Anton", sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+/* CARTÃO DO PERFIL */
+
+.cartao-perfil {
+    background: #1c1c1c;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 28px;
+}
+
+.capa-perfil {
+    height: 155px;
+    background: #ccff00;
+    position: relative;
+}
+
+.capa-perfil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(0, 0, 0, .12)
+    );
+}
+
+.conteudo-perfil {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 0 30px 28px;
+    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+}
+
+.foto-perfil {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border: 5px solid #1c1c1c;
+    object-fit: cover;
+    background: #333;
+}
+
+.informacoes-perfil {
+    margin-top: 55px;
+}
+
+.informacoes-perfil h2 {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.informacoes-perfil p {
+    color: #888;
+    font-size: 14px;
+}
+
+/* INFORMAÇÕES PESSOAIS */
+
+.cartao-informacoes,
+.cartao-sobre {
+    background: #1c1c1c;
+    border-radius: 22px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.cartao-informacoes h2,
+.cartao-sobre h2 {
+    color: #ccff00;
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+/* GRADE */
+
+.grade-informacoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.item-informacao {
+    background: #252525;
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid #333;
+    transition: .2s;
+}
+
+.item-informacao:hover {
+    border-color: #ccff00;
+}
+
+.item-informacao label {
+    display: block;
+    color: #777;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin-bottom: 9px;
+    text-transform: uppercase;
+}
+
+.item-informacao p {
+    color: #ddd;
+    font-size: 15px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+/* SOBRE MIM */
+
+.cartao-sobre p {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+
+    .conteudo-cabecalho {
+        padding: 18px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .container {
+        margin: 35px auto;
+        padding: 0 18px;
+    }
+
+    .titulo-pagina {
+        font-size: 34px;
+    }
+
+    .conteudo-perfil {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 0 22px 25px;
+    }
+
+    .foto-perfil {
+        width: 110px;
+        height: 110px;
+    }
+
+    .informacoes-perfil {
+        margin-top: 5px;
+    }
+
+    .grade-informacoes {
+        grid-template-columns: 1fr;
+    }
+
+    .cartao-informacoes,
+    .cartao-sobre {
+        padding: 22px;
+    }
+}

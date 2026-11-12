@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="imgs/gremio icon.png" type="image/png">
+<link rel="icon" href="imgs/gremio favicon.png">
   <title>Configurações · Grêmio</title>
   <meta name="description" content="Gerencie sua conta, senha, acessibilidade e segurança no Grêmio." />
   <meta name="robots" content="noindex, nofollow" />

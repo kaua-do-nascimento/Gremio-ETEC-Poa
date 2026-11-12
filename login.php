@@ -10,8 +10,7 @@
 
     <title>Login - Grêmio ETEC de Poá</title>
 
-    <link rel="icon"
-        href="imgs/gremio icon.png">
+    <link rel="icon" href="imgs/gremio favicon.png">
 
     <link rel="stylesheet"
         href="css/login.css?v=<?php echo @filemtime(__DIR__ . '/css/login.css'); ?>">

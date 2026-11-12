@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Recuperar Senha - Grêmio ETEC de Poá</title>
-
-    <link rel="icon" href="imgs/gremio icon.png">
+<link rel="icon" href="imgs/gremio favicon.png">
     <link rel="stylesheet" href="css/esqueci-minha-senha.css?v=<?php echo @filemtime(__DIR__ . '/css/esqueci-minha-senha.css'); ?>">
 
     <link rel="stylesheet"

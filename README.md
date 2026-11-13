@@ -63,7 +63,7 @@ Gremio-ETEC-Poa/
 ├── configuracoes.php         # Configurações da conta do usuário logado
 ├── dashboard.php            # Painel administrativo (somente administrador)
 ├── termos.php                # Termos de Uso da plataforma
-├── privacidade.php           # Política de Privacidade e tratamento de dados dos usuários
+├── privacidade.php           # Política de Privacidade e tratamento de dados dos usuários 
 ├── css/                      # Estilos de cada página
 ├── js/                       # Scripts: api.js (cliente da API), dashboard.js, script.js, ...
 ├── imgs/                     # Imagens e ícones

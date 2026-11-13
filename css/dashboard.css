@@ -5,14 +5,14 @@
 }
 
 :root {
-    --lime: #caff00;
-    --bg: #0f0f0f;
-    --bg-2: #0c0c0c;
-    --bg-3: #080808;
-    --card: #141414;
-    --border: #1e1e1e;
-    --border-2: #222222;
-    --border-3: #181818;
+    --lime: #ccff00;
+    --bg: #0d0d0d;
+    --bg-2: #0d0d0d;
+    --bg-3: #0d0d0d;
+    --card: #1c1c1c;
+    --border: #292929;
+    --border-2: #292929;
+    --border-3: #1c1c1c;
     --text-muted: #555555;
     --text-faint: #444444;
 }
@@ -22,7 +22,7 @@ html, body {
 }
 
 body {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     background: var(--bg);
     color: #ffffff;
 }
@@ -66,11 +66,11 @@ button, input, select {
 }
 
 .sidebar-title {
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     font-weight: 900;
     font-size: 1.05rem;
     line-height: 1;
-    color: #fff;
+    color: #ccff00;
 }
 
 .sidebar-subtitle {
@@ -102,7 +102,7 @@ button, input, select {
     align-items: center;
     gap: 0.75rem;
     padding: 0.6rem 0.85rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     background: none;
     border: none;
     color: var(--text-muted);
@@ -134,7 +134,7 @@ button, input, select {
     align-items: center;
     gap: 0.75rem;
     padding: 0.6rem 0.75rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.15s;
 }
@@ -177,9 +177,9 @@ button, input, select {
     font-weight: 900;
     font-size: 0.75rem;
     flex-shrink: 0;
-    font-family: 'Exo 2', sans-serif;
-    background: rgba(202, 255, 0, 0.12);
-    border: 1px solid rgba(202, 255, 0, 0.25);
+    font-family: "Anton", sans-serif;
+    background: rgba(204, 255, 0, 0.12);
+    border: 1px solid rgba(204, 255, 0, 0.25);
     color: var(--lime);
 }
 
@@ -222,7 +222,7 @@ button, input, select {
 }
 
 .page-title {
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     font-weight: 900;
     font-size: 1.25rem;
     color: #fff;
@@ -258,7 +258,7 @@ button, input, select {
 .search-box input {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 0.75rem;
+    border-radius: 8px;
     padding: 0.5rem 1rem 0.5rem 2.15rem;
     font-size: 0.85rem;
     color: #fff;
@@ -272,7 +272,7 @@ button, input, select {
 }
 
 .search-box input:focus {
-    border-color: rgba(202, 255, 0, 0.4);
+    border-color: rgba(204, 255, 0, 0.4);
 }
 
 .icon-btn {
@@ -285,7 +285,7 @@ button, input, select {
     background: none;
     border: none;
     color: var(--text-faint);
-    border-radius: 0.75rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.15s;
 }
@@ -327,7 +327,7 @@ button, input, select {
 .stat-card {
     background: var(--card);
     border: 1px solid var(--border-2);
-    border-radius: 1rem;
+    border-radius: 12px;
     padding: 1.25rem;
 }
 
@@ -349,7 +349,7 @@ button, input, select {
 }
 
 .stat-value {
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     font-weight: 900;
     font-size: 2.75rem;
     line-height: 1;
@@ -374,8 +374,8 @@ button, input, select {
 /* ===================== TABLE CARD ===================== */
 .table-card {
     background: var(--bg-2);
-    border: 1px solid #1a1a1a;
-    border-radius: 1rem;
+    border: 1px solid #292929;
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -384,7 +384,7 @@ button, input, select {
     align-items: center;
     justify-content: space-between;
     padding: 0.85rem 1.5rem;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid #292929;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
@@ -415,7 +415,7 @@ button, input, select {
 }
 
 .tab.active {
-    background: rgba(202, 255, 0, 0.12);
+    background: rgba(204, 255, 0, 0.12);
     color: var(--lime);
 }
 
@@ -424,12 +424,12 @@ button, input, select {
     font-size: 0.625rem;
     padding: 0.1rem 0.4rem;
     border-radius: 0.35rem;
-    background: #181818;
+    background: #1c1c1c;
     color: #444;
 }
 
 .tab.active .tab-count {
-    background: rgba(202, 255, 0, 0.18);
+    background: rgba(204, 255, 0, 0.18);
     color: var(--lime);
 }
 
@@ -464,12 +464,12 @@ th {
 }
 
 tbody tr {
-    border-bottom: 1px solid #131313;
+    border-bottom: 1px solid #1c1c1c;
     transition: background 0.15s;
 }
 
 tbody tr:hover {
-    background: #111111;
+    background: #1c1c1c;
 }
 
 tbody tr:hover .row-actions {
@@ -519,9 +519,9 @@ td {
     border-radius: 0.5rem;
     font-size: 0.75rem;
     font-family: monospace;
-    background: #181818;
+    background: #1c1c1c;
     color: #888;
-    border: 1px solid #222;
+    border: 1px solid #292929;
 }
 
 .td-role {
@@ -555,9 +555,9 @@ td {
 }
 
 .status-ativo {
-    background: rgba(202, 255, 0, 0.15);
+    background: rgba(204, 255, 0, 0.15);
     color: var(--lime);
-    border-color: rgba(202, 255, 0, 0.25);
+    border-color: rgba(204, 255, 0, 0.25);
 }
 
 .status-suspenso {
@@ -596,7 +596,7 @@ td {
 
 .row-action-btn:hover.edit-btn {
     color: var(--lime);
-    background: rgba(202, 255, 0, 0.1);
+    background: rgba(204, 255, 0, 0.1);
 }
 
 .row-action-btn:hover.delete-btn {
@@ -617,7 +617,7 @@ td {
     align-items: center;
     justify-content: space-between;
     padding: 0.85rem 1.5rem;
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid #292929;
 }
 
 .pagination-info {
@@ -650,7 +650,7 @@ td {
 
 .page-btn:hover:not(:disabled) {
     color: #fff;
-    background: #1a1a1a;
+    background: #292929;
 }
 
 .page-btn.active {
@@ -680,7 +680,7 @@ td {
 }
 
 .placeholder-title {
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     font-weight: 900;
     font-size: 1rem;
     color: #2a2a2a;
@@ -714,7 +714,7 @@ td {
 .btn-secondary {
     flex: 1;
     padding: 0.65rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     border: 1px solid var(--border-2);
     background: none;
     color: #666;
@@ -731,25 +731,25 @@ td {
 .btn-primary {
     flex: 1;
     padding: 0.65rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     border: none;
     background: var(--lime);
     color: #000;
     font-weight: 700;
     font-size: 0.85rem;
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     cursor: pointer;
     transition: background 0.15s;
 }
 
 .btn-primary:hover {
-    background: #d9ff33;
+    background: #b8e600;
 }
 
 .btn-danger {
     flex: 1;
     padding: 0.65rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     border: none;
     background: #ef4444;
     color: #fff;
@@ -770,7 +770,7 @@ td {
     width: 100%;
     max-width: 420px;
     height: 100%;
-    background: #0f0f0f;
+    background: #0d0d0d;
     border-left: 1px solid var(--border-2);
     display: flex;
     flex-direction: column;
@@ -786,7 +786,7 @@ td {
 }
 
 .edit-panel-header h2 {
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     font-weight: 900;
     font-size: 1rem;
     color: #fff;
@@ -829,7 +829,7 @@ td {
     width: 100%;
     background: var(--card);
     border: 1px solid var(--border-2);
-    border-radius: 0.75rem;
+    border-radius: 8px;
     padding: 0.6rem 0.85rem;
     font-size: 0.85rem;
     color: #fff;
@@ -839,7 +839,7 @@ td {
 
 .field input:focus,
 .field select:focus {
-    border-color: rgba(202, 255, 0, 0.5);
+    border-color: rgba(204, 255, 0, 0.5);
 }
 
 .status-choice {
@@ -850,7 +850,7 @@ td {
 
 .status-choice button {
     padding: 0.6rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: capitalize;
@@ -895,9 +895,9 @@ td {
 .delete-panel {
     position: relative;
     margin: auto;
-    background: #111111;
+    background: #1c1c1c;
     border: 1px solid var(--border-2);
-    border-radius: 1rem;
+    border-radius: 12px;
     padding: 1.75rem;
     width: 100%;
     max-width: 380px;
@@ -908,7 +908,7 @@ td {
 .delete-icon {
     width: 56px;
     height: 56px;
-    border-radius: 1rem;
+    border-radius: 12px;
     background: rgba(239, 68, 68, 0.12);
     border: 1px solid rgba(239, 68, 68, 0.25);
     color: #f87171;
@@ -919,7 +919,7 @@ td {
 }
 
 .delete-panel h3 {
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     font-weight: 900;
     font-size: 1.1rem;
     color: #fff;
@@ -974,7 +974,7 @@ td {
     width: 100%;
     background: var(--card);
     border: 1px solid var(--border-2);
-    border-radius: 0.75rem;
+    border-radius: 8px;
     padding: 0.6rem 0.85rem;
     font-size: 0.85rem;
     font-family: inherit;
@@ -985,7 +985,7 @@ td {
 }
 
 #orcamentoModalOverlay .field textarea:focus {
-    border-color: rgba(202, 255, 0, 0.5);
+    border-color: rgba(204, 255, 0, 0.5);
 }
 
 .orcamento-resumo {
@@ -998,7 +998,7 @@ td {
 .orcamento-resumo-item {
     background: var(--card);
     border: 1px solid var(--border-2);
-    border-radius: 0.75rem;
+    border-radius: 8px;
     padding: 0.7rem 0.9rem;
 }
 
@@ -1018,7 +1018,7 @@ td {
 }
 
 .orcamento-item-form-titulo {
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Anton", sans-serif;
     font-size: 0.85rem;
     color: #fff;
     margin: 1.25rem 0 0.5rem;

@@ -33,6 +33,38 @@ body{
         cubic-bezier(.77,0,.18,1);
 }
 
+.termos-aceite {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.termos-aceite input {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.termos-aceite label {
+    display: inline;
+    cursor: pointer;
+}
+
+.termos-aceite a {
+    color: #ccff00;
+    text-decoration: none;
+}
+
+.termos-aceite a:hover {
+    text-decoration: underline;
+}
+/* Botão desabilitado */
+#botaoCriar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 /* ANIMAÇÃO CADASTRO */
 

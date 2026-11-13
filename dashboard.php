@@ -6,7 +6,7 @@
     <title>Gerenciar Usuários · Grêmio</title>
     <meta name="robots" content="noindex, nofollow">
 
-    <link rel="icon" href="imgs/gremio icon.png">
+    <link rel="icon" href="imgs/gremio favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -11,7 +11,7 @@
     <title>Login - Grêmio ETEC de Poá</title>
 
     <link rel="icon"
-        href="imgs/gremio icon.png">
+        href="imgs/gremio favicon.png">
 
     <link rel="stylesheet"
         href="css/login.css?v=<?php echo @filemtime(__DIR__ . '/css/login.css'); ?>">
@@ -329,11 +329,19 @@
 
                         </div>
 
-
-                        <button
+                      <div class="termos-aceite">
+                         <label>
+                                <input type="checkbox" id="aceitarTermos" required>
+                            Li e aceito os
+                        <a href="termos.php" target="_blank">Termos de Uso</a> e a
+                        <a href="privacidade.php" target="_blank">Política de Privacidade</a>.
+                        </label>
+                            </div>                 
+                            <button
                             type="submit"
                             class="primary-button"
-                            id="botaoCriar">
+                            id="botaoCriar"
+                           disabled>
 
                             Criar minha conta
 

@@ -1,40 +1,30 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-<link rel="icon" href="imgs/gremio favicon.png">
+
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login - Grêmio ETEC de Poá</title>
 
+    <link rel="icon" href="imgs/gremio favicon.png">
 
     <link rel="stylesheet"
         href="css/login.css?v=<?php echo @filemtime(__DIR__ . '/css/login.css'); ?>">
 
-    
-
-    <link rel="preconnect"
-        href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;600;700&family=Permanent+Marker&display=swap"
         rel="stylesheet">
-
 </head>
 
 <body>
 
-    <div class="auth-container"
-        id="authContainer">
+    <div class="auth-container" id="authContainer">
 
         <div class="auth-track">
-
 
             <!-- LOGIN -->
 
@@ -44,24 +34,14 @@
 
                     <h1>GRÊMIO</h1>
 
-
-                    <div id="mensagemErroLogin"
-                        class="message error">
-                    </div>
-
+                    <div id="mensagemErroLogin" class="message error"></div>
 
                     <form id="formLogin">
 
-
                         <div class="field">
-
-                            <label>
-                                E-MAIL OU RM
-                            </label>
-
+                            <label>E-MAIL OU RM</label>
 
                             <div class="input-box">
-
                                 <i class="fa-regular fa-id-card"></i>
 
                                 <input
@@ -69,21 +49,13 @@
                                     id="loginInput"
                                     placeholder="RM ou e-mail institucional"
                                     required>
-
                             </div>
-
                         </div>
 
-
                         <div class="field">
-
-                            <label>
-                                SENHA
-                            </label>
-
+                            <label>SENHA</label>
 
                             <div class="input-box">
-
                                 <i class="fa-solid fa-lock"></i>
 
                                 <input
@@ -91,55 +63,38 @@
                                     id="senhaLoginInput"
                                     placeholder="Senha"
                                     required>
-
                             </div>
-
                         </div>
 
-
-                        <a class="forgot"
-                            href="esqueci-minha-senha.php">
-
+                        <a class="forgot" href="esqueci-minha-senha.php">
                             Esqueceu a senha?
-
                         </a>
-
 
                         <button
                             type="submit"
                             class="primary-button"
                             id="botaoEntrar">
-
                             Entrar
-
                         </button>
 
                     </form>
 
-
                     <div class="divider"></div>
 
-
                     <p class="switch-text">
-
                         Ainda não tem uma conta?
-
                     </p>
-
 
                     <button
                         type="button"
                         class="secondary-button"
                         id="abrirCadastro">
-
                         Cadastrar
-
                     </button>
 
                 </div>
 
             </section>
-
 
             <!-- PAINEL VERDE LOGIN -->
 
@@ -147,15 +102,11 @@
 
                 <div class="green-shape right-shape"></div>
 
-
                 <div class="green-content">
 
                     <div class="welcome">
-
                         BEM-VINDO!
-
                     </div>
-
 
                     <img
                         src="imgs/gremio favicon.png"
@@ -165,7 +116,6 @@
                 </div>
 
             </section>
-
 
             <!-- PAINEL VERDE CADASTRO -->
 
@@ -173,15 +123,11 @@
 
                 <div class="green-shape left-shape"></div>
 
-
                 <div class="green-content">
 
                     <div class="welcome">
-
                         FAÇA PARTE!
-
                     </div>
-
 
                     <img
                         src="imgs/gremio favicon.png"
@@ -191,7 +137,6 @@
                 </div>
 
             </section>
-
 
             <!-- CADASTRO -->
 
@@ -201,29 +146,16 @@
 
                     <h1>GRÊMIO</h1>
 
+                    <div id="mensagemErroCadastro" class="message error"></div>
 
-                    <div id="mensagemErroCadastro"
-                        class="message error">
-                    </div>
-
-
-                    <div id="mensagemSucesso"
-                        class="message success">
-                    </div>
-
+                    <div id="mensagemSucesso" class="message success"></div>
 
                     <form id="formCadastro">
 
-
                         <div class="field">
-
-                            <label>
-                                NOME COMPLETO
-                            </label>
-
+                            <label>NOME COMPLETO</label>
 
                             <div class="input-box">
-
                                 <i class="fa-regular fa-user"></i>
 
                                 <input
@@ -231,21 +163,13 @@
                                     id="nomeInput"
                                     placeholder="Nome completo"
                                     required>
-
                             </div>
-
                         </div>
 
-
                         <div class="field">
-
-                            <label>
-                                E-MAIL INSTITUCIONAL
-                            </label>
-
+                            <label>E-MAIL INSTITUCIONAL</label>
 
                             <div class="input-box">
-
                                 <i class="fa-regular fa-envelope"></i>
 
                                 <input
@@ -253,21 +177,13 @@
                                     id="emailInput"
                                     placeholder="E-mail institucional"
                                     required>
-
                             </div>
-
                         </div>
 
-
                         <div class="field">
-
-                            <label>
-                                RM
-                            </label>
-
+                            <label>RM</label>
 
                             <div class="input-box">
-
                                 <i class="fa-regular fa-id-card"></i>
 
                                 <input
@@ -277,21 +193,31 @@
                                     maxlength="5"
                                     inputmode="numeric"
                                     required>
-
                             </div>
+                        </div> 
 
-                        </div>
+                         
+                        <div class="field">
+                                <label for="cursoInput">CURSO</label>
+
+                    <div class="input-box">
+                                <i class="fa-regular fa-user"></i>
+
+                                    <select id="cursoInput" required>
+            <option value="">Selecione seu curso</option>
+            <option value="Informática para Internet">Informática para Internet (Infonet)</option>
+            <option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas (DS)</option>
+            <option value="Marketing">Marketing (MKT)</option>
+            <option value="Administração">Administração (ADM)</option>
+        </select>
+    </div>
+</div>
 
 
                         <div class="field">
-
-                            <label>
-                                SENHA
-                            </label>
-
+                            <label>SENHA</label>
 
                             <div class="input-box">
-
                                 <i class="fa-solid fa-lock"></i>
 
                                 <input
@@ -300,21 +226,13 @@
                                     placeholder="Mínimo 8 caracteres"
                                     minlength="8"
                                     required>
-
                             </div>
-
                         </div>
 
-
                         <div class="field">
-
-                            <label>
-                                CONFIRMAR SENHA
-                            </label>
-
+                            <label>CONFIRMAR SENHA</label>
 
                             <div class="input-box">
-
                                 <i class="fa-solid fa-lock"></i>
 
                                 <input
@@ -322,57 +240,65 @@
                                     id="confirmarSenhaInput"
                                     placeholder="Confirme sua senha"
                                     required>
-
                             </div>
-
                         </div>
 
+                        <!-- ACEITE DOS TERMOS -->
+
+                        <div class="termos-aceite">
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="aceitarTermos"
+                                    required>
+
+                                Li e aceito os
+                                <a href="termos.php" target="_blank">
+                                    Termos de Uso
+                                </a>
+                                e a
+                                <a href="privacidade.php" target="_blank">
+                                    Política de Privacidade
+                                </a>.
+                            </label>
+
+                        </div>
 
                         <button
                             type="submit"
                             class="primary-button"
-                            id="botaoCriar">
-
+                            id="botaoCriar"
+                            disabled>
                             Criar minha conta
-
                         </button>
 
                     </form>
 
-
                     <div class="divider"></div>
 
-
                     <p class="switch-text">
-
                         Já possui uma conta?
-
                     </p>
-
 
                     <button
                         type="button"
                         class="secondary-button"
                         id="voltarLogin">
-
                         Fazer Login
-
                     </button>
 
                 </div>
 
             </section>
 
-
         </div>
 
     </div>
-
 
     <script src="js/api.js?v=<?php echo @filemtime(__DIR__ . '/js/api.js'); ?>"></script>
 
     <script src="js/login-cadastro.js?v=<?php echo @filemtime(__DIR__ . '/js/login-cadastro.js'); ?>"></script>
 
 </body>
-
 </html>

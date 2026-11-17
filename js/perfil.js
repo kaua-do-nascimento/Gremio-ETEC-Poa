@@ -47,7 +47,7 @@ async function carregarPerfil() {
         }
 
         if (curso) {
-            curso.textContent = usuario.curso || "Curso não informado";
+            curso.textContent = usuario.curso || "Curso";
         }
 
         // DADOS PESSOAIS

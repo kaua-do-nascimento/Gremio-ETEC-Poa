@@ -274,7 +274,7 @@ document.getElementById("settingsNav").addEventListener("click", (e) => {
   renderPanel();
 });
 
-document.querySelector(".settings-logout").addEventListener("click", sairDaConta);
+
 
 (async function iniciar() {
   const sessao = obterSessao();

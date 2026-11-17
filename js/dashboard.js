@@ -287,7 +287,6 @@ function render() {
         tbody.innerHTML = rows
             .map((u, i) => {
                 const num = (state.page - 1) * PER_PAGE + i + 1;
-                const ehAdmin = /administrador/i.test(u.role || "");
                 return `
                 <tr data-id="${u.id}">
                     <td class="td-index">${num}</td>
@@ -310,13 +309,9 @@ function render() {
                             <button class="row-action-btn edit-btn" data-action="edit" data-id="${u.id}" title="Editar perfil">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9.5 1.5L12.5 4.5l-8.5 8.5L1 13l.5-2.5 8.5-8.5z"></path><path d="M7.5 3.5l3 3"></path></svg>
                             </button>
-                            ${ehAdmin
-                                ? `<button class="row-action-btn" disabled data-action="protegido" title="Administrador protegido: não pode ser excluído" style="opacity:.5;cursor:not-allowed;">
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="9" height="6" rx="1.2"></rect><path d="M4.5 6.5V4.5a2.5 2.5 0 015 0v2"></path></svg>
-                            </button>`
-                                : `<button class="row-action-btn delete-btn" data-action="delete" data-id="${u.id}" title="Excluir perfil">
+                            <button class="row-action-btn delete-btn" data-action="delete" data-id="${u.id}" title="Excluir perfil">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 3.5h11M4.5 3.5V2h5v1.5M5 3.5l.7 8h2.6l.7-8"></path></svg>
-                            </button>`}
+                            </button>
                         </div>
                     </td>
                 </tr>`;
@@ -390,13 +385,6 @@ function openEditModal(id) {
         // Não é possível voltar manualmente para "pendente" — esse estado
         // só existe automaticamente entre o cadastro e a análise do admin.
         b.disabled = b.dataset.status === "pendente" && user.status !== "pendente";
-        // Administradores são protegidos: não podem ser suspensos
-        if (/administrador/i.test(user.role || "") && b.dataset.status !== "ativo") {
-            b.disabled = true;
-            b.title = "Administrador protegido: não pode ser suspenso";
-        } else if (b.title && b.title.startsWith("Administrador protegido")) {
-            b.title = "";
-        }
     });
 
     limparErroEdicao();

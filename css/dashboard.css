@@ -1041,3 +1041,18 @@ td {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+.field textarea {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border-2);
+    border-radius: 0.75rem;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.85rem;
+    font-family: inherit;
+    color: #fff;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.15s;
+}
+

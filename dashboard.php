@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Usuários · Grêmio</title>
     <meta name="robots" content="noindex, nofollow">
-
-    <link rel="icon" href="imgs/gremio favicon.png">
+<link rel="icon" href="imgs/gremio favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -737,7 +736,7 @@
             </div>
             <div class="field">
                 <label>Descrição</label>
-                <textarea id="eventoDescricao" rows="3"></textarea>
+                <input id="eventoDescricao" rows="3"></input>
             </div>
             <div class="field">
                 <label>Local</label>

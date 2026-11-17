@@ -64,7 +64,7 @@
 
                <br><a href="index.php" class="settings-logout">
     <span class="settings-nav-icon">↪</span>
-    Sair
+    Sair da conta
 </a>
             </aside>
 

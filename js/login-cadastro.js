@@ -1,279 +1,245 @@
-const authContainer =
-    document.getElementById("authContainer");
 
-const abrirCadastro =
-    document.getElementById("abrirCadastro");
+/* ABRIR E FECHAR CADASTRO */
 
-const voltarLogin =
-    document.getElementById("voltarLogin");
+const authContainer = document.getElementById("authContainer");
 
+const abrirCadastro = document.getElementById("abrirCadastro");
+
+const voltarLogin = document.getElementById("voltarLogin");
 
 abrirCadastro.addEventListener("click", () => {
-
-    authContainer.classList.add(
-        "cadastro-ativo"
-    );
-
+    authContainer.classList.add("cadastro-ativo");
 });
-
 
 voltarLogin.addEventListener("click", () => {
-
-    authContainer.classList.remove(
-        "cadastro-ativo"
-    );
-
+    authContainer.classList.remove("cadastro-ativo");
 });
 
 
-// Permite abrir a página já no painel de cadastro via
-// login.php?cadastro=1 (usado pelo botão "Cadastrar" da Home)
+/* ABRIR CADASTRO PELA URL */
+
 if (new URLSearchParams(window.location.search).get("cadastro") === "1") {
     authContainer.classList.add("cadastro-ativo");
 }
 
 
+/* ACEITE DOS TERMOS */
+
+const aceitarTermos = document.getElementById("aceitarTermos");
+
+const botaoCriar = document.getElementById("botaoCriar");
+
+aceitarTermos.addEventListener("change", function () {
+    botaoCriar.disabled = !this.checked;
+});
+
+
 /* LOGIN */
 
-const formLogin =
-    document.getElementById("formLogin");
+const formLogin = document.getElementById("formLogin");
 
-const mensagemErroLogin =
-    document.getElementById("mensagemErroLogin");
+const mensagemErroLogin = document.getElementById("mensagemErroLogin");
 
-const botaoEntrar =
-    document.getElementById("botaoEntrar");
+const botaoEntrar = document.getElementById("botaoEntrar");
 
+formLogin.addEventListener("submit", async (evento) => {
 
-formLogin.addEventListener(
-    "submit",
+    evento.preventDefault();
 
-    async (evento) => {
+    mensagemErroLogin.style.display = "none";
 
-        evento.preventDefault();
+    botaoEntrar.disabled = true;
+    botaoEntrar.textContent = "Entrando...";
 
-        mensagemErroLogin.style.display =
-            "none";
+    const login = document.getElementById("loginInput").value.trim();
 
-        botaoEntrar.disabled =
-            true;
+    const senha = document.getElementById("senhaLoginInput").value;
 
-        botaoEntrar.textContent =
-            "Entrando...";
+    try {
 
+        const resultado = await apiLogin(login, senha);
 
-        const login =
-            document
-                .getElementById("loginInput")
-                .value
-                .trim();
+        if (resultado.success) {
 
+            window.location.href = "index.php";
 
-        const senha =
-            document
-                .getElementById("senhaLoginInput")
-                .value;
-
-
-        try {
-
-            const resultado =
-                await apiLogin(login, senha);
-
-
-            if (resultado.success) {
-
-                window.location.href =
-                    "index.php";
-
-            } else {
-
-                mensagemErroLogin.textContent =
-                    resultado.message ||
-                    "Não foi possível entrar.";
-
-                mensagemErroLogin.style.display =
-                    "block";
-
-            }
-
-        } catch (erro) {
+        } else {
 
             mensagemErroLogin.textContent =
-                "Não foi possível conectar ao servidor (" + erro.message + "). " +
-                "Confira se o WAMP está com o ícone verde e se o mod_rewrite está ativo.";
+                resultado.message || "Não foi possível entrar.";
 
-            mensagemErroLogin.style.display =
-                "block";
-
-        } finally {
-
-            botaoEntrar.disabled =
-                false;
-
-            botaoEntrar.textContent =
-                "Entrar";
+            mensagemErroLogin.style.display = "block";
 
         }
 
+    } catch (erro) {
+
+        mensagemErroLogin.textContent =
+            "Não foi possível conectar ao servidor (" + erro.message + "). " +
+            "Confira se o WAMP está com o ícone verde e se o mod_rewrite está ativo.";
+
+        mensagemErroLogin.style.display = "block";
+
+    } finally {
+
+        botaoEntrar.disabled = false;
+        botaoEntrar.textContent = "Entrar";
+
     }
-);
+
+});
 
 
 /* CADASTRO */
 
-const formCadastro =
-    document.getElementById("formCadastro");
+const formCadastro = document.getElementById("formCadastro");
 
-const mensagemErroCadastro =
-    document.getElementById("mensagemErroCadastro");
+const mensagemErroCadastro = document.getElementById("mensagemErroCadastro");
 
-const mensagemSucesso =
-    document.getElementById("mensagemSucesso");
-
-const botaoCriar =
-    document.getElementById("botaoCriar");
+const mensagemSucesso = document.getElementById("mensagemSucesso");
 
 
-formCadastro.addEventListener(
-    "submit",
+formCadastro.addEventListener("submit", async (evento) => {
 
-    async (evento) => {
+    evento.preventDefault();
 
-        evento.preventDefault();
+    mensagemErroCadastro.style.display = "none";
 
-
-        mensagemErroCadastro.style.display =
-            "none";
-
-        mensagemSucesso.style.display =
-            "none";
+    mensagemSucesso.style.display = "none";
 
 
-        const nome =
-            document
-                .getElementById("nomeInput")
-                .value
-                .trim();
+    const nome = document.getElementById("nomeInput").value.trim();
+
+    const email = document.getElementById("emailInput").value.trim();
+
+    const rm = document.getElementById("rmInput").value.trim();
+
+    const curso = document.getElementById("cursoInput").value;
+
+    const senha = document.getElementById("senhaCadastroInput").value;
+
+    const confirmarSenha = document.getElementById("confirmarSenhaInput").value;
 
 
-        const email =
-            document
-                .getElementById("emailInput")
-                .value
-                .trim();
+    /* VERIFICAR ACEITE DOS TERMOS */
 
+    if (!aceitarTermos.checked) {
 
-        const rm =
-            document
-                .getElementById("rmInput")
-                .value
-                .trim();
+        mensagemErroCadastro.textContent =
+            "Você precisa aceitar os termos para continuar.";
 
+        mensagemErroCadastro.style.display = "block";
 
-        const senha =
-            document
-                .getElementById("senhaCadastroInput")
-                .value;
-
-
-        const confirmarSenha =
-            document
-                .getElementById("confirmarSenhaInput")
-                .value;
-
-
-        if (!/^\d{5}$/.test(rm)) {
-
-            mensagemErroCadastro.textContent =
-                "O RM deve possuir exatamente 5 dígitos.";
-
-            mensagemErroCadastro.style.display =
-                "block";
-
-            return;
-
-        }
-
-
-        if (senha !== confirmarSenha) {
-
-            mensagemErroCadastro.textContent =
-                "As senhas não coincidem.";
-
-            mensagemErroCadastro.style.display =
-                "block";
-
-            return;
-
-        }
-
-
-        botaoCriar.disabled =
-            true;
-
-        botaoCriar.textContent =
-            "Criando...";
-
-
-        const dadosCadastro = {
-
-            nome_completo: nome,
-            email: email,
-            rm: rm,
-            senha: senha
-
-        };
-
-
-        try {
-
-            const resultado =
-                await apiCadastro(
-                    dadosCadastro
-                );
-
-
-            if (resultado.success) {
-
-                mensagemSucesso.textContent =
-                    resultado.message ||
-                    "Cadastro realizado com sucesso. Aguarde a aprovação.";
-
-                mensagemSucesso.style.display =
-                    "block";
-
-                formCadastro.reset();
-
-            } else {
-
-                mensagemErroCadastro.textContent =
-                    resultado.message ||
-                    "Não foi possível realizar o cadastro.";
-
-                mensagemErroCadastro.style.display =
-                    "block";
-
-            }
-
-        } catch (erro) {
-
-            mensagemErroCadastro.textContent =
-                "Não foi possível conectar ao servidor (" + erro.message + "). " +
-                "Confira se o WAMP está com o ícone verde e se o mod_rewrite está ativo.";
-
-            mensagemErroCadastro.style.display =
-                "block";
-
-        } finally {
-
-            botaoCriar.disabled =
-                false;
-
-            botaoCriar.textContent =
-                "Criar minha conta";
-
-        }
+        return;
 
     }
-);
+
+
+    /* VERIFICAR RM */
+
+    if (!/^\d{5}$/.test(rm)) {
+
+        mensagemErroCadastro.textContent =
+            "O RM deve possuir exatamente 5 dígitos.";
+
+        mensagemErroCadastro.style.display = "block";
+
+        return;
+
+    }
+
+
+    /* VERIFICAR CURSO */
+
+    if (!curso) {
+
+        mensagemErroCadastro.textContent =
+            "Selecione seu curso para continuar.";
+
+        mensagemErroCadastro.style.display = "block";
+
+        return;
+
+    }
+
+
+    /* VERIFICAR SENHAS */
+
+    if (senha !== confirmarSenha) {
+
+        mensagemErroCadastro.textContent =
+            "As senhas não coincidem.";
+
+        mensagemErroCadastro.style.display = "block";
+
+        return;
+
+    }
+
+
+    /* ENVIAR CADASTRO */
+
+    botaoCriar.disabled = true;
+
+    botaoCriar.textContent = "Criando...";
+
+
+    const dadosCadastro = {
+
+        nome_completo: nome,
+
+        email: email,
+
+        rm: rm,
+
+        curso: curso,
+
+        senha: senha
+
+    };
+
+
+    try {
+
+        const resultado = await apiCadastro(dadosCadastro);
+
+
+        if (resultado.success) {
+
+            mensagemSucesso.textContent =
+                resultado.message ||
+                "Cadastro realizado com sucesso. Aguarde a aprovação.";
+
+            mensagemSucesso.style.display = "block";
+
+            formCadastro.reset();
+
+        } else {
+
+            mensagemErroCadastro.textContent =
+                resultado.message ||
+                "Não foi possível realizar o cadastro.";
+
+            mensagemErroCadastro.style.display = "block";
+
+        }
+
+
+    } catch (erro) {
+
+        mensagemErroCadastro.textContent =
+            "Não foi possível conectar ao servidor (" + erro.message + "). " +
+            "Confira se o WAMP está com o ícone verde e se o mod_rewrite está ativo.";
+
+        mensagemErroCadastro.style.display = "block";
+
+
+    } finally {
+
+        botaoCriar.textContent = "Criar minha conta";
+
+        botaoCriar.disabled = !aceitarTermos.checked;
+
+    }
+
+});

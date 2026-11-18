@@ -273,15 +273,17 @@ class ProjetoController
     {
         header('Content-Type: application/json; charset=utf-8');
         try {
-            $arquivou = $this->projetoModel->arquivar($id);
-            if (!$arquivou) {
+            $excluiu = $this->projetoModel->arquivar($id);
+            if (!$excluiu) {
                 $this->responder(404, ['success' => false, 'message' => 'Projeto não encontrado.']);
                 return;
             }
-            $this->projetoModel->registrarHistorico($id, $usuarioId, 'arquivamento', 'Projeto arquivado/excluído.');
-            $this->responder(200, ['success' => true, 'message' => 'Projeto arquivado com sucesso.']);
+            // O histórico do projeto é apagado junto (CASCADE), então o registro
+            // da exclusão vai para a auditoria geral.
+            AuditoriaService::log($usuarioId, 'exclusao', 'projetos', "Projeto #{$id} excluído.");
+            $this->responder(200, ['success' => true, 'message' => 'Projeto excluído com sucesso.']);
         } catch (PDOException $e) {
-            $this->responder(500, ['success' => false, 'message' => 'Erro ao arquivar projeto.']);
+            $this->responder(500, ['success' => false, 'message' => 'Erro ao excluir projeto.']);
         }
     }
 

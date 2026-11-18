@@ -264,14 +264,14 @@ class Orcamento
     }
 
     /**
-     * Arquiva (soft delete). Os itens ficam intactos no banco, apenas
-     * inacessíveis, pois toda rota de item exige orçamento não arquivado.
+     * Exclui definitivamente o orçamento (DELETE no banco). Os itens
+     * saem junto (ON DELETE CASCADE).
      */
     public function arquivar(int $id): bool
     {
         $stmt = $this->db->prepare("
-            UPDATE orcamentos SET deleted_at = NOW()
-            WHERE id = :id AND deleted_at IS NULL
+            DELETE FROM orcamentos
+            WHERE id = :id
         ");
         $stmt->execute([':id' => $id]);
 

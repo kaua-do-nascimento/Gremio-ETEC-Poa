@@ -244,13 +244,14 @@ class Evento
     }
 
     /**
-     * Exclui (soft delete) um evento.
+     * Exclui definitivamente um evento (DELETE no banco). Participantes,
+     * presenças e anexos saem junto (ON DELETE CASCADE).
      */
     public function excluir(int $id): bool
     {
         $stmt = $this->db->prepare("
-            UPDATE eventos SET deleted_at = NOW()
-            WHERE id = :id AND deleted_at IS NULL
+            DELETE FROM eventos
+            WHERE id = :id
         ");
         $stmt->execute([':id' => $id]);
 

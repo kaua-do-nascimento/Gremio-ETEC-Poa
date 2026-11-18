@@ -175,16 +175,14 @@ class Projeto
     }
 
     /**
-     * Arquiva (soft delete) um projeto. O padrão já usado em todo o
-     * sistema (usuarios, eventos, publicacoes, tarefas...) é
-     * `deleted_at`, então "excluir" e "arquivar" são a mesma operação
-     * aqui, seguindo a convenção existente.
+     * Exclui definitivamente um projeto (DELETE no banco). Tarefas,
+     * membros, histórico e anexos saem junto (ON DELETE CASCADE).
      */
     public function arquivar(int $id): bool
     {
         $stmt = $this->db->prepare("
-            UPDATE projetos SET deleted_at = NOW()
-            WHERE id = :id AND deleted_at IS NULL
+            DELETE FROM projetos
+            WHERE id = :id
         ");
         $stmt->execute([':id' => $id]);
 
@@ -390,8 +388,8 @@ class Projeto
     public function excluirTarefa(int $tarefaId): bool
     {
         $stmt = $this->db->prepare("
-            UPDATE tarefas SET deleted_at = NOW()
-            WHERE id = :id AND deleted_at IS NULL
+            DELETE FROM tarefas
+            WHERE id = :id
         ");
         $stmt->execute([':id' => $tarefaId]);
 

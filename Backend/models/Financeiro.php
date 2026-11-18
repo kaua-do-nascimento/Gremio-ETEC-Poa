@@ -353,15 +353,14 @@ class Financeiro
     }
 
     /**
-     * Arquiva (soft delete) uma movimentação. Mesmo padrão de
-     * Projeto::arquivar() — a linha nunca é apagada fisicamente,
-     * só marcada com deleted_at.
+     * Exclui definitivamente uma movimentação (DELETE no banco).
+     * Os comprovantes saem junto (ON DELETE CASCADE).
      */
     public function arquivar(int $id): bool
     {
         $stmt = $this->db->prepare("
-            UPDATE movimentacoes_financeiras SET deleted_at = NOW()
-            WHERE id = :id AND deleted_at IS NULL
+            DELETE FROM movimentacoes_financeiras
+            WHERE id = :id
         ");
         $stmt->execute([':id' => $id]);
 

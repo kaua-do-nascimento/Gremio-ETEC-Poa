@@ -342,13 +342,14 @@ class Votacao
     }
 
     /**
-     * Exclui (soft delete) uma votação.
+     * Exclui definitivamente uma votação (DELETE no banco). Opções,
+     * votos e resultados saem junto (ON DELETE CASCADE).
      */
     public function excluir(int $id): bool
     {
         $stmt = $this->db->prepare("
-            UPDATE votacoes SET deleted_at = NOW()
-            WHERE id = :id AND deleted_at IS NULL
+            DELETE FROM votacoes
+            WHERE id = :id
         ");
         $stmt->execute([':id' => $id]);
 

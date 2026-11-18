@@ -185,15 +185,14 @@ class Publicacao
     }
 
     /**
-     * Exclui (soft delete) uma publicação.
+     * Exclui definitivamente uma publicação (DELETE no banco).
+     * As reações saem junto (ON DELETE CASCADE).
      */
     public function excluir(int $id): bool
     {
         $sql = "
-            UPDATE publicacoes
-            SET deleted_at = NOW()
+            DELETE FROM publicacoes
             WHERE id = :id
-            AND deleted_at IS NULL
         ";
 
         $stmt = $this->db->prepare($sql);

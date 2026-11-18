@@ -389,29 +389,42 @@ public function atualizarDadosBasicos(int $id, string $nomeCompleto, string $ema
 }
 
 /**
- * Exclui (soft delete) um usuário e encerra todas as suas sessões ativas.
+ * Exclui definitivamente um usuário (DELETE no banco).
+ *
+ * - Sessões, solicitação de cadastro, perfis, tokens, reações e
+ *   participações saem junto (ON DELETE CASCADE no schema).
+ * - Logs e tarefas ficam com usuario_id/responsavel_id NULL.
+ * - Votos e publicações do próprio usuário são removidos aqui, pois
+ *   as chaves estrangeiras deles são RESTRICT.
+ * - Se o usuário ainda for dono de eventos, projetos, orçamentos,
+ *   movimentações ou votações, o MySQL recusa (SQLSTATE 23000) e a
+ *   exceção sobe para o controller responder com uma mensagem clara.
  */
 public function excluir(int $id): bool
 {
     $this->db->beginTransaction();
 
     try {
-        $stmt = $this->db->prepare("
-            UPDATE usuarios
-            SET deleted_at = NOW(),
-                ativo = 0
-            WHERE id = :id
-            AND deleted_at IS NULL
+        $existe = $this->db->prepare("
+            SELECT 1 FROM usuarios
+            WHERE id = :id AND deleted_at IS NULL
         ");
+        $existe->execute([':id' => $id]);
+
+        if (!$existe->fetchColumn()) {
+            $this->db->rollBack();
+            return false;
+        }
+
+        $this->db->prepare("DELETE FROM votos WHERE usuario_id = :id")
+            ->execute([':id' => $id]);
+
+        $this->db->prepare("DELETE FROM publicacoes WHERE usuario_id = :id")
+            ->execute([':id' => $id]);
+
+        $stmt = $this->db->prepare("DELETE FROM usuarios WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $excluiu = $stmt->rowCount() > 0;
-
-        if ($excluiu) {
-            $this->db->prepare("
-                UPDATE sessoes SET ativa = 0, encerrada_em = NOW()
-                WHERE usuario_id = :id AND ativa = 1
-            ")->execute([':id' => $id]);
-        }
 
         $this->db->commit();
         return $excluiu;

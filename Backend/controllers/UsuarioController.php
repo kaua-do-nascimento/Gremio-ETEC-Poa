@@ -310,7 +310,7 @@ class UsuarioController
     }
 
     /**
-     * Exclui (soft delete) um usuário. Um administrador não pode
+     * Exclui definitivamente um usuário (DELETE no banco). Um administrador não pode
      * excluir a própria conta por essa rota.
      */
     public function excluir(int $id, int $adminIdSolicitante): void
@@ -346,13 +346,23 @@ class UsuarioController
                 return;
             }
 
-            AuditoriaService::log($adminIdSolicitante, 'exclusao', 'usuarios', "Usuário #{$id} excluído (soft delete).");
+            AuditoriaService::log($adminIdSolicitante, 'exclusao', 'usuarios', "Usuário #{$id} excluído definitivamente.");
 
             $this->responder(200, [
                 'success' => true,
                 'message' => 'Usuário excluído com sucesso.'
             ]);
         } catch (PDOException $e) {
+            // 23000 = chave estrangeira: o usuário ainda é dono de eventos,
+            // projetos, orçamentos, movimentações ou votações.
+            if ($e->getCode() === '23000') {
+                $this->responder(409, [
+                    'success' => false,
+                    'message' => 'Este usuário ainda possui eventos, projetos, orçamentos, movimentações ou votações vinculados. Exclua ou transfira esses itens antes, ou suspenda a conta.'
+                ]);
+                return;
+            }
+
             $this->responder(500, [
                 'success' => false,
                 'message' => 'Erro ao excluir usuário.'

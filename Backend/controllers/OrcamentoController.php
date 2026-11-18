@@ -412,14 +412,14 @@ class OrcamentoController
 
             AuditoriaService::log(
                 $usuarioId,
-                'arquivamento',
+                'exclusao',
                 'orcamentos',
-                "Orçamento #{$id} arquivado."
+                "Orçamento #{$id} excluído."
             );
 
-            $this->responder(200, ['success' => true, 'message' => 'Orçamento arquivado com sucesso.']);
+            $this->responder(200, ['success' => true, 'message' => 'Orçamento excluído com sucesso.']);
         } catch (PDOException $e) {
-            $this->responder(500, ['success' => false, 'message' => 'Erro ao arquivar orçamento.']);
+            $this->responder(500, ['success' => false, 'message' => 'Erro ao excluir orçamento.']);
         }
     }
 

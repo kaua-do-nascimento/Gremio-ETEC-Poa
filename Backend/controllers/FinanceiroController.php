@@ -296,14 +296,14 @@ class FinanceiroController
 
             AuditoriaService::log(
                 $usuarioId,
-                'arquivamento',
+                'exclusao',
                 'financeiro',
-                "Movimentação financeira #{$id} arquivada."
+                "Movimentação financeira #{$id} excluída."
             );
 
-            $this->responder(200, ['success' => true, 'message' => 'Movimentação arquivada com sucesso.']);
+            $this->responder(200, ['success' => true, 'message' => 'Movimentação excluída com sucesso.']);
         } catch (PDOException $e) {
-            $this->responder(500, ['success' => false, 'message' => 'Erro ao arquivar movimentação.']);
+            $this->responder(500, ['success' => false, 'message' => 'Erro ao excluir movimentação.']);
         }
     }
 

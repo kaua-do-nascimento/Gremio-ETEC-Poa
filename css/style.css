@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -5,9 +6,9 @@
 }
 
 body {
-    background: #0b0b0b;
-    color: #fff;
-    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: #ccff00;
+    font-family: "Outfit", sans-serif;
     line-height: 1.5;
 }
 
@@ -32,7 +33,7 @@ img {
 }
 
 .font-serif {
-    font-family: Georgia, serif;
+    font-family: "Anton", sans-serif;
 }
 
 .min-h-screen {
@@ -49,7 +50,7 @@ img {
 
     height: 60px;
 
-    background: #0b0b0b;
+    background: #0d0d0d;
     border-bottom: 1px solid #222;
 
     padding: 0 20px;
@@ -78,7 +79,7 @@ img {
     display: grid;
     place-items: center;
 
-    background: #a8ff19;
+    background: #ccff00;
     color: #111;
 
     border-radius: 5px;
@@ -110,11 +111,11 @@ img {
 }
 
 .nav-pill:hover {
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .nav-pill.active {
-    background: #a8ff19;
+    background: #ccff00;
     color: #111;
 }
 
@@ -149,8 +150,8 @@ img {
 }
 
 .search-trigger:hover {
-    color: #a8ff19;
-    border-color: #a8ff19;
+    color: #ccff00;
+    border-color: #ccff00;
 }
 
 .search-form {
@@ -162,7 +163,7 @@ img {
 .search-input {
     width: 100%;
 
-    background: #111;
+    background: #1c1c1c;
     border: 1px solid #333;
 
     color: #fff;
@@ -174,7 +175,7 @@ img {
 }
 
 .search-input:focus {
-    border-color: #a8ff19;
+    border-color: #ccff00;
 }
 
 
@@ -194,18 +195,18 @@ img {
 }
 
 .btn-default {
-    background: #a8ff19;
+    background: #ccff00;
     color: #111;
     font-weight: bold;
 }
 
 .btn-default:hover {
-    background: #8ddd0d;
+    background: #b8e600;
 }
 
 .btn-ghost:hover {
     background: #181818;
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .btn-icon {
@@ -244,7 +245,7 @@ img {
     height: 6px;
 
     border-radius: 50%;
-    background: #a8ff19;
+    background: #ccff00;
 }
 
 /* Contador dinâmico de não lidas (substitui o .notif-dot estático
@@ -283,7 +284,7 @@ img {
     display: none;
     flex-direction: column;
 
-    background: #111;
+    background: #1c1c1c;
     color: #fff;
 
     border: 1px solid #292929;
@@ -313,7 +314,7 @@ img {
 .notif-dropdown-header button {
     background: transparent;
     border: 0;
-    color: #a8ff19;
+    color: #ccff00;
     font-size: 12px;
     cursor: pointer;
 }
@@ -388,15 +389,16 @@ img {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #a8ff19;
+    background: #ccff00;
     flex-shrink: 0;
 }
+
 
 /* FILTROS DE AUDITORIA */
 
 .filtro-select {
     border: 1px solid #292929;
-    background: #0b0b0b;
+    background: #0d0d0d;
     color: #fff;
 
     border-radius: 6px;
@@ -407,7 +409,7 @@ img {
 }
 
 .filtro-select:focus {
-    border-color: #a8ff19;
+    border-color: #ccff00;
 }
 
 .log-detalhe-linha {
@@ -498,7 +500,7 @@ img {
 
     padding: 6px;
 
-    background: #111;
+    background: #1c1c1c;
     color: #fff;
 
     border: 1px solid #292929;
@@ -539,7 +541,7 @@ img {
 
 .dropdown-item:hover {
     background: #1b1b1b;
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .dropdown-item.destructive:hover {
@@ -616,11 +618,11 @@ img {
 }
 
 .tab-trigger:hover {
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .tab-trigger.active {
-    background: #a8ff19;
+    background: #ccff00;
     color: #111;
 }
 
@@ -628,11 +630,11 @@ img {
 /* CARDS */
 
 .card {
-    background: #101010;
+    background: #1c1c1c;
     color: #fff;
 
-    border: 1px solid #222;
-    border-radius: 8px;
+    border: 1px solid #292929;
+    border-radius: 12px;
 }
 
 
@@ -665,7 +667,7 @@ img {
 }
 
 .create-post-trigger:hover {
-    border-color: #a8ff19;
+    border-color: #ccff00;
     color: #aaa;
 }
 
@@ -700,7 +702,7 @@ img {
     width: 100%;
 
     border: 1px solid #292929;
-    background: #0b0b0b;
+    background: #0d0d0d;
 
     border-radius: 6px;
 
@@ -714,11 +716,11 @@ img {
 }
 
 .field:focus {
-    border-color: #a8ff19;
+    border-color: #ccff00;
 }
 
 .field-title {
-    font-family: Georgia, serif;
+    font-family: "Anton", sans-serif;
     font-size: 16px;
 }
 
@@ -736,7 +738,7 @@ img {
 }
 
 .tags-row span {
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .tag-input {
@@ -782,7 +784,7 @@ img {
 }
 
 .badge-secondary {
-    background: #a8ff19;
+    background: #ccff00;
     color: #111;
 }
 
@@ -804,7 +806,7 @@ img {
 }
 
 .post-card:hover {
-    border-color: #a8ff19;
+    border-color: #ccff00;
 }
 
 .post-card-inner {
@@ -849,7 +851,7 @@ img {
 }
 
 .post-title {
-    font-family: Georgia, serif;
+    font-family: "Anton", sans-serif;
 
     font-size: 17px;
     font-weight: bold;
@@ -862,7 +864,7 @@ img {
 }
 
 .post-card:hover .post-title {
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .post-excerpt {
@@ -914,7 +916,7 @@ img {
 }
 
 .post-action-btn:hover {
-    color: #a8ff19;
+    color: #ccff00;
     background: #181818;
 }
 
@@ -923,7 +925,7 @@ img {
 }
 
 .post-action-btn.bookmarked {
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .post-cover {
@@ -1032,7 +1034,7 @@ img {
 .agenda-card {
     overflow: hidden;
 
-    background: #111;
+    background: #1c1c1c;
     color: #fff;
 
     border-color: #292929;
@@ -1087,8 +1089,8 @@ img {
 }
 
 .cal-nav-btn:hover {
-    color: #a8ff19;
-    border-color: #a8ff19;
+    color: #ccff00;
+    border-color: #ccff00;
 }
 
 .cal-caption {
@@ -1145,7 +1147,7 @@ img {
 
 .cal-day:hover:not(.outside) {
     background: #1b1b1b;
-    color: #a8ff19;
+    color: #ccff00;
 }
 
 .cal-day.outside {
@@ -1154,19 +1156,19 @@ img {
 }
 
 .cal-day.today {
-    border: 1px solid #a8ff19;
-    color: #a8ff19;
+    border: 1px solid #ccff00;
+    color: #ccff00;
 }
 
 .cal-day.selected {
-    background: #a8ff19;
+    background: #ccff00;
     color: #111;
 
     font-weight: bold;
 }
 
 .cal-day.selected:hover {
-    background: #a8ff19;
+    background: #ccff00;
     color: #111;
 }
 
@@ -1199,7 +1201,7 @@ img {
 
     flex-shrink: 0;
 
-    background: #a8ff19;
+    background: #ccff00;
 
     border-radius: 50%;
 }
@@ -1207,7 +1209,7 @@ img {
 .agenda-event-time {
     margin: 0;
 
-    color: #a8ff19;
+    color: #ccff00;
 
     font-size: 10px;
     font-weight: bold;
@@ -1225,7 +1227,7 @@ img {
     border: 0;
     background: transparent;
 
-    color: #a8ff19;
+    color: #ccff00;
 
     padding: 0;
 
@@ -1270,7 +1272,7 @@ img {
 }
 
 .activity-stat {
-    background: #101010;
+    background: #1c1c1c;
     padding: 10px 0;
 }
 
@@ -1329,7 +1331,10 @@ img {
         margin-left: 0;
     }
 }
-/* Mensagens de erro/sucesso do compositor de posts (módulo de Publicações) */
+
+
+/* MENSAGENS DE ERRO E SUCESSO */
+
 .message.error {
     background: rgba(255, 69, 58, 0.12);
     border: 1px solid rgba(255, 69, 58, 0.4);

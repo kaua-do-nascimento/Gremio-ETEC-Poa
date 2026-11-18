@@ -61,9 +61,9 @@ Gremio-ETEC-Poa/
 ├── esqueci-minha-senha.php   # Pedido de recuperação de senha
 ├── redefinir-senha.php       # Definição da nova senha (link recebido)
 ├── configuracoes.php         # Configurações da conta do usuário logado
-├── dashboard.php            # Painel administrativo (somente administrador)
-├── termos.php                # Termos de Uso da plataforma
-├── privacidade.php           # Política de Privacidade e tratamento de dados dos usuários 
+├── dashboard.php             # Painel administrativo (somente administrador)
+├── perfil.php                # Perfil do usuário logado
+├── eventos.php               # Página de visualização e gerenciamento de eventos e projetos
 ├── css/                      # Estilos de cada página
 ├── js/                       # Scripts: api.js (cliente da API), dashboard.js, script.js, ...
 ├── imgs/                     # Imagens e ícones

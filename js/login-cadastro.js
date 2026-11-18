@@ -114,6 +114,8 @@ formCadastro.addEventListener("submit", async (evento) => {
 
     const rm = document.getElementById("rmInput").value.trim();
 
+    const curso = document.getElementById("cursoInput").value;
+
     const senha = document.getElementById("senhaCadastroInput").value;
 
     const confirmarSenha = document.getElementById("confirmarSenhaInput").value;
@@ -139,6 +141,20 @@ formCadastro.addEventListener("submit", async (evento) => {
 
         mensagemErroCadastro.textContent =
             "O RM deve possuir exatamente 5 dígitos.";
+
+        mensagemErroCadastro.style.display = "block";
+
+        return;
+
+    }
+
+
+    /* VERIFICAR CURSO */
+
+    if (!curso) {
+
+        mensagemErroCadastro.textContent =
+            "Selecione seu curso para continuar.";
 
         mensagemErroCadastro.style.display = "block";
 
@@ -175,6 +191,8 @@ formCadastro.addEventListener("submit", async (evento) => {
         email: email,
 
         rm: rm,
+
+        curso: curso,
 
         senha: senha
 

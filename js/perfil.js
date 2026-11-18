@@ -47,7 +47,7 @@ async function carregarPerfil() {
         }
 
         if (curso) {
-            curso.textContent = usuario.curso || "Curso";
+            curso.textContent = usuario.curso || "Curso não informado";
         }
 
         // DADOS PESSOAIS
@@ -55,7 +55,7 @@ async function carregarPerfil() {
             campos[0].textContent = usuario.nome_completo || "Não informado";
             campos[1].textContent = usuario.rm || "Não informado";
             campos[2].textContent = usuario.email || "Não informado";
-            campos[3].textContent = usuario.curso || "Não informado";
+            campos[3].textContent = usuario.curso || "Curso não informado";
         }
 
     } catch (erro) {

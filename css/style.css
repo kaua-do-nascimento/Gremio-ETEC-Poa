@@ -1351,3 +1351,111 @@ img {
     padding: 2rem 0;
     font-size: 0.9rem;
 }
+
+
+/* MODAL DE CONFIRMAÇÃO (excluir publicação) */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+
+.modal-overlay.open {
+    display: flex;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+.delete-panel {
+    position: relative;
+    margin: auto;
+    background: #111111;
+    border: 1px solid #222;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    width: calc(100% - 32px);
+    max-width: 380px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.delete-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 1rem;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #f87171;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+}
+
+.delete-panel h3 {
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.delete-panel p {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.delete-panel p strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.delete-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.delete-buttons .btn-secondary,
+.delete-buttons .btn-danger {
+    flex: 1;
+    padding: 0.65rem;
+    border-radius: 0.75rem;
+    font-size: 0.85rem;
+    transition: all 0.15s;
+}
+
+.delete-buttons .btn-secondary {
+    border: 1px solid #333;
+    background: none;
+    color: #888;
+}
+
+.delete-buttons .btn-secondary:hover {
+    color: #fff;
+    border-color: #555;
+}
+
+.delete-buttons .btn-danger {
+    border: none;
+    background: #ef4444;
+    color: #fff;
+    font-weight: 700;
+}
+
+.delete-buttons .btn-danger:hover {
+    background: #dc2626;
+}
+
+.delete-buttons .btn-danger:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

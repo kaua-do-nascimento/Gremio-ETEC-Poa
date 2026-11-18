@@ -1,9 +1,9 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<link rel="icon" href="imgs/gremio favicon.png">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="imgs/gremio favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Grêmio Estudantil - ETEC de Poá</title>

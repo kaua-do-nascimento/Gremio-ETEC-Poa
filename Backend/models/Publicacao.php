@@ -48,6 +48,7 @@ class Publicacao
                 u.nome_completo AS autor_nome,
                 u.foto_url AS autor_foto,
 
+                c.id AS categoria_id,
                 c.nome AS categoria_nome,
 
                 (

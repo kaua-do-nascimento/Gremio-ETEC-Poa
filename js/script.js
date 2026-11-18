@@ -73,6 +73,7 @@ function mapearPublicacaoDoBackend(p) {
     id: String(p.id),
     title: p.titulo,
     excerpt: p.conteudo,
+    categoriaId: p.categoria_id ? String(p.categoria_id) : "",
     author: {
       name: p.autor.nome,
       avatar: p.autor.foto_url || "imgs/gremio icon.png",
@@ -87,6 +88,15 @@ function mapearPublicacaoDoBackend(p) {
     bookmarked: false,
     liked: p.curtido_por_mim,
   };
+}
+
+/**
+ * Retorna true se o usuário logado é administrador (único perfil
+ * autorizado a editar/excluir publicações no backend).
+ */
+function usuarioEhAdmin() {
+  const sessao = obterSessao();
+  return !!(sessao && sessao.perfis && sessao.perfis.includes("administrador"));
 }
 
 /**
@@ -177,6 +187,8 @@ function renderPosts() {
   container.style.display = "flex";
   emptyState.style.display = "none";
 
+  const ehAdmin = usuarioEhAdmin();
+
   container.innerHTML = tabFiltered
     .map((post) => {
       const tagsHtml = post.tags
@@ -219,6 +231,12 @@ function renderPosts() {
                 <div class="dropdown" data-post-menu="${post.id}">
                   <button class="post-action-btn" data-action="menu-toggle">${icons.more}</button>
                   <div class="dropdown-menu">
+                    ${
+                      ehAdmin
+                        ? `<button class="dropdown-item" data-action="edit-post" data-id="${post.id}">Editar</button>
+                    <button class="dropdown-item destructive" data-action="delete-post" data-id="${post.id}">Excluir</button>`
+                        : ""
+                    }
                     <button class="dropdown-item">Copiar link</button>
                     <button class="dropdown-item">Compartilhar</button>
                     <button class="dropdown-item destructive">Denunciar</button>
@@ -492,9 +510,79 @@ document.getElementById("postsContainer").addEventListener("click", (e) => {
     renderPosts();
     return;
   }
+
+  const editBtn = e.target.closest('[data-action="edit-post"]');
+  if (editBtn) {
+    closeAllDropdowns();
+    const post = posts.find((p) => p.id === editBtn.dataset.id);
+    if (post && composerApi) composerApi.startEdit(post);
+    return;
+  }
+
+  const deleteBtn = e.target.closest('[data-action="delete-post"]');
+  if (deleteBtn) {
+    closeAllDropdowns();
+    excluirPublicacaoPorId(deleteBtn.dataset.id);
+    return;
+  }
+});
+
+/**
+ * Abre o modal de confirmação para excluir a publicação (exclusão definitiva no banco).
+ */
+let postParaExcluirId = null;
+
+function excluirPublicacaoPorId(id) {
+  const post = posts.find((p) => p.id === id);
+  postParaExcluirId = id;
+  document.getElementById("deletePostNome").textContent = post ? `"${post.title}"` : "selecionada";
+  document.getElementById("deletePostModalOverlay").classList.add("open");
+}
+
+function fecharModalExcluirPost() {
+  postParaExcluirId = null;
+  document.getElementById("deletePostModalOverlay").classList.remove("open");
+}
+
+document.querySelectorAll('[data-close="delete-post"]').forEach((el) => {
+  el.addEventListener("click", fecharModalExcluirPost);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") fecharModalExcluirPost();
+});
+
+document.getElementById("confirmDeletePostBtn").addEventListener("click", async () => {
+  if (postParaExcluirId === null) return;
+
+  const id = postParaExcluirId;
+  const btn = document.getElementById("confirmDeletePostBtn");
+  btn.disabled = true;
+  btn.textContent = "Excluindo...";
+
+  try {
+    const resultado = await apiExcluirPublicacao(id);
+
+    if (!resultado.success) {
+      alert(resultado.message || "Não foi possível excluir a publicação.");
+      return;
+    }
+
+    fecharModalExcluirPost();
+    if (composerApi) composerApi.cancelIfEditing(id);
+    await loadPosts();
+  } catch (erro) {
+    alert("Não foi possível conectar ao servidor.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Sim, excluir";
+  }
 });
 
 // ===================== CREATE POST =====================
+
+// Preenchido por initCreatePost(); permite que o feed abra o compositor em modo edição.
+let composerApi = null;
 
 function initCreatePost() {
   const trigger = document.getElementById("createPostTrigger");
@@ -508,12 +596,17 @@ function initCreatePost() {
   const cancelBtn = document.getElementById("cancelPostBtn");
 
   let expanded = false;
+  let editingId = null; // id da publicação em edição (null = criando)
 
   function setExpanded(value) {
     expanded = value;
     content.classList.toggle("open", expanded);
     chevron.classList.toggle("expanded", expanded);
-    trigger.textContent = expanded ? "Novo post..." : "Compartilhe algo com a comunidade...";
+    trigger.textContent = expanded
+      ? editingId
+        ? "Editando post..."
+        : "Novo post..."
+      : "Compartilhe algo com a comunidade...";
   }
 
   function toggleExpanded() {
@@ -565,9 +658,33 @@ function initCreatePost() {
     document.getElementById("postCategoriaSelect").value = "";
     newPostTags = [];
     tagInput.value = "";
+    editingId = null;
+    publishBtn.textContent = "Publicar";
+    document.getElementById("createPostError").style.display = "none";
     renderTagsRow();
     updatePublishState();
   }
+
+  composerApi = {
+    startEdit(post) {
+      editingId = post.id;
+      titleInput.value = post.title;
+      contentInput.value = post.excerpt;
+      document.getElementById("postCategoriaSelect").value = post.categoriaId;
+      publishBtn.textContent = "Salvar alterações";
+      document.getElementById("createPostError").style.display = "none";
+      updatePublishState();
+      setExpanded(true);
+      document.getElementById("composerCard").scrollIntoView({ behavior: "smooth", block: "center" });
+      titleInput.focus();
+    },
+    cancelIfEditing(id) {
+      if (editingId === String(id)) {
+        resetForm();
+        setExpanded(false);
+      }
+    },
+  };
 
   cancelBtn.addEventListener("click", () => {
     resetForm();
@@ -590,14 +707,19 @@ function initCreatePost() {
       return;
     }
 
+    const estaEditando = editingId !== null;
+
     publishBtn.disabled = true;
-    publishBtn.textContent = "Publicando...";
+    publishBtn.textContent = estaEditando ? "Salvando..." : "Publicando...";
 
     try {
-      const resultado = await apiCriarPublicacao(title, content, categoriaId);
+      const resultado = estaEditando
+        ? await apiAtualizarPublicacao(editingId, title, content, categoriaId)
+        : await apiCriarPublicacao(title, content, categoriaId);
 
       if (!resultado.success) {
-        errorBox.textContent = resultado.message || "Não foi possível publicar.";
+        errorBox.textContent =
+          resultado.message || (estaEditando ? "Não foi possível salvar as alterações." : "Não foi possível publicar.");
         errorBox.style.display = "block";
         return;
       }
@@ -610,7 +732,8 @@ function initCreatePost() {
       errorBox.style.display = "block";
     } finally {
       publishBtn.disabled = false;
-      publishBtn.textContent = "Publicar";
+      publishBtn.textContent = editingId !== null ? "Salvar alterações" : "Publicar";
+      updatePublishState();
     }
   });
 }

@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/dashboard.css?v=<?php echo @filemtime(__DIR__ . '/css/dashboard.css'); ?>">
 </head>
@@ -736,7 +736,7 @@
             </div>
             <div class="field">
                 <label>Descrição</label>
-                <input id="eventoDescricao" rows="3"></input>
+                <textarea id="eventoDescricao" rows="3"></textarea>
             </div>
             <div class="field">
                 <label>Local</label>
@@ -875,18 +875,18 @@
     </aside>
 </div>
 
-<!-- ===================== MODAL: ARQUIVAR/EXCLUIR PROJETO ===================== -->
+<!-- ===================== MODAL: EXCLUIR PROJETO ===================== -->
 <div class="modal-overlay" id="deleteProjetoModalOverlay">
     <div class="modal-backdrop" data-close="delete-projeto"></div>
     <div class="delete-panel">
         <div class="delete-icon">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 10v6M14 19.5v.5"></path><path d="M12.3 3.8L2.6 20a2 2 0 001.7 3h19.4a2 2 0 001.7-3L15.7 3.8a2 2 0 00-3.4 0z"></path></svg>
         </div>
-        <h3>Arquivar projeto?</h3>
-        <p>O projeto <strong id="deleteProjetoNome"></strong> será arquivado e deixará de aparecer nas listagens. Esta ação não pode ser desfeita.</p>
+        <h3>Excluir projeto?</h3>
+        <p>O projeto <strong id="deleteProjetoNome"></strong> será excluído permanentemente, junto com o histórico ligado a ele. Esta ação não pode ser desfeita.</p>
         <div class="delete-buttons">
             <button class="btn-secondary" data-close="delete-projeto">Cancelar</button>
-            <button class="btn-danger" id="confirmDeleteProjetoBtn">Sim, arquivar</button>
+            <button class="btn-danger" id="confirmDeleteProjetoBtn">Sim, excluir</button>
         </div>
     </div>
 </div>
@@ -1156,18 +1156,18 @@
     </aside>
 </div>
 
-<!-- ===================== MODAL: ARQUIVAR MOVIMENTAÇÃO FINANCEIRA ===================== -->
+<!-- ===================== MODAL: EXCLUIR MOVIMENTAÇÃO FINANCEIRA ===================== -->
 <div class="modal-overlay" id="deleteFinanceiroModalOverlay">
     <div class="modal-backdrop" data-close="delete-financeiro"></div>
     <div class="delete-panel">
         <div class="delete-icon">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 10v6M14 19.5v.5"></path><path d="M12.3 3.8L2.6 20a2 2 0 001.7 3h19.4a2 2 0 001.7-3L15.7 3.8a2 2 0 00-3.4 0z"></path></svg>
         </div>
-        <h3>Arquivar movimentação?</h3>
-        <p>A movimentação <strong id="deleteFinanceiroDescricao"></strong> será arquivada e não aparecerá mais nas listagens.</p>
+        <h3>Excluir movimentação?</h3>
+        <p>A movimentação <strong id="deleteFinanceiroDescricao"></strong> será excluída permanentemente. Esta ação não pode ser desfeita.</p>
         <div class="delete-buttons">
             <button class="btn-secondary" data-close="delete-financeiro">Cancelar</button>
-            <button class="btn-danger" id="confirmDeleteFinanceiroBtn">Sim, arquivar</button>
+            <button class="btn-danger" id="confirmDeleteFinanceiroBtn">Sim, excluir</button>
         </div>
     </div>
 </div>
@@ -1290,18 +1290,18 @@
     </aside>
 </div>
 
-<!-- ===================== MODAL: ARQUIVAR ORÇAMENTO ===================== -->
+<!-- ===================== MODAL: EXCLUIR ORÇAMENTO ===================== -->
 <div class="modal-overlay" id="deleteOrcamentoModalOverlay">
     <div class="modal-backdrop" data-close="delete-orcamento"></div>
     <div class="delete-panel">
         <div class="delete-icon">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 10v6M14 19.5v.5"></path><path d="M12.3 3.8L2.6 20a2 2 0 001.7 3h19.4a2 2 0 001.7-3L15.7 3.8a2 2 0 00-3.4 0z"></path></svg>
         </div>
-        <h3>Arquivar orçamento?</h3>
-        <p>O orçamento <strong id="deleteOrcamentoNome"></strong> será arquivado e não aparecerá mais na listagem.</p>
+        <h3>Excluir orçamento?</h3>
+        <p>O orçamento <strong id="deleteOrcamentoNome"></strong> será excluído permanentemente, junto com os itens do orçamento. Esta ação não pode ser desfeita.</p>
         <div class="delete-buttons">
             <button class="btn-secondary" data-close="delete-orcamento">Cancelar</button>
-            <button class="btn-danger" id="confirmDeleteOrcamentoBtn">Sim, arquivar</button>
+            <button class="btn-danger" id="confirmDeleteOrcamentoBtn">Sim, excluir</button>
         </div>
     </div>
 </div>

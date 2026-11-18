@@ -373,6 +373,22 @@
 
 </div>
 
+<!-- ===================== MODAL: EXCLUIR PUBLICAÇÃO (somente administrador) ===================== -->
+<div class="modal-overlay" id="deletePostModalOverlay">
+    <div class="modal-backdrop" data-close="delete-post"></div>
+    <div class="delete-panel" role="dialog" aria-modal="true" aria-labelledby="deletePostTitulo">
+        <div class="delete-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 10v6M14 19.5v.5"></path><path d="M12.3 3.8L2.6 20a2 2 0 001.7 3h19.4a2 2 0 001.7-3L15.7 3.8a2 2 0 00-3.4 0z"></path></svg>
+        </div>
+        <h3 id="deletePostTitulo">Excluir publicação?</h3>
+        <p>A publicação <strong id="deletePostNome"></strong> será excluída permanentemente, junto com as reações ligadas a ela. Esta ação não pode ser desfeita.</p>
+        <div class="delete-buttons">
+            <button type="button" class="btn-secondary" data-close="delete-post">Cancelar</button>
+            <button type="button" class="btn-danger" id="confirmDeletePostBtn">Sim, excluir</button>
+        </div>
+    </div>
+</div>
+
 <!-- SCRIPTS -->
 <script src="js/api.js?v=<?php echo @filemtime(__DIR__ . '/js/api.js'); ?>"></script>
 

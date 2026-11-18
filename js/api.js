@@ -227,6 +227,17 @@ async function apiCriarPublicacao(titulo, conteudo, categoriaId) {
 }
 
 /**
+ * Atualiza uma publicação existente (somente administrador).
+ */
+async function apiAtualizarPublicacao(id, titulo, conteudo, categoriaId) {
+  const { dados } = await apiFetch(`/publicacoes/${id}/atualizar`, {
+    method: "POST",
+    body: JSON.stringify({ titulo, conteudo, categoria_id: categoriaId }),
+  });
+  return dados;
+}
+
+/**
  * Alterna a curtida do usuário autenticado numa publicação.
  */
 async function apiReagirPublicacao(id) {

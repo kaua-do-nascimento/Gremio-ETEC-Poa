@@ -5,7 +5,7 @@
 //   GET  /api/admin/usuarios              -> lista todos
 //   POST /api/admin/usuarios/{id}/atualizar -> edita nome/e-mail
 //   POST /api/admin/usuarios/{id}/status    -> ativa/suspende
-//   POST /api/admin/usuarios/{id}/excluir   -> exclui (soft delete)
+//   POST /api/admin/usuarios/{id}/excluir   -> exclui de vez (hard delete); 409 se ainda for dono de dados
 //
 // OBS: os campos "Turma" e "Telefone" não existem no banco de dados
 // atual (tabela `usuarios`), então são exibidos como "-" e não são
@@ -82,6 +82,11 @@ function formatarData(dataIso) {
     const data = new Date(dataIso.replace(" ", "T"));
     if (isNaN(data.getTime())) return "-";
     return data.toLocaleDateString("pt-BR");
+}
+
+// Administrador é protegido (backend e banco recusam excluir ou suspender).
+function usuarioEhAdministrador(u) {
+    return /administrador/i.test(u.role || "");
 }
 
 function mapearUsuario(u) {
@@ -309,7 +314,7 @@ function render() {
                             <button class="row-action-btn edit-btn" data-action="edit" data-id="${u.id}" title="Editar perfil">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9.5 1.5L12.5 4.5l-8.5 8.5L1 13l.5-2.5 8.5-8.5z"></path><path d="M7.5 3.5l3 3"></path></svg>
                             </button>
-                            <button class="row-action-btn delete-btn" data-action="delete" data-id="${u.id}" title="Excluir perfil">
+                            <button class="row-action-btn delete-btn" data-action="delete" data-id="${u.id}" ${usuarioEhAdministrador(u) ? 'disabled title="Administrador não pode ser excluído"' : 'title="Excluir perfil"'}>
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 3.5h11M4.5 3.5V2h5v1.5M5 3.5l.7 8h2.6l.7-8"></path></svg>
                             </button>
                         </div>
@@ -385,6 +390,13 @@ function openEditModal(id) {
         // Não é possível voltar manualmente para "pendente" — esse estado
         // só existe automaticamente entre o cadastro e a análise do admin.
         b.disabled = b.dataset.status === "pendente" && user.status !== "pendente";
+        // Administrador não pode ser suspenso.
+        if (b.dataset.status === "suspenso" && usuarioEhAdministrador(user)) {
+            b.disabled = true;
+            b.title = "Administrador não pode ser suspenso";
+        } else if (b.dataset.status === "suspenso") {
+            b.removeAttribute("title");
+        }
     });
 
     limparErroEdicao();
@@ -902,7 +914,7 @@ async function abrirModalParticipantes(eventoId) {
 //   GET  /api/projetos/{id}                              -> detalhe
 //   POST /api/projetos                                   -> cria (admin)
 //   POST /api/projetos/{id}/atualizar                    -> edita (admin)
-//   POST /api/projetos/{id}/excluir                      -> arquiva (admin)
+//   POST /api/projetos/{id}/excluir                      -> exclui de vez (admin)
 //   GET  /api/projetos/{id}/membros                       -> lista membros
 //   POST /api/projetos/{id}/membros                       -> adiciona membro (admin)
 //   POST /api/projetos/{id}/membros/remover                -> remove membro (admin)
@@ -1015,7 +1027,7 @@ function renderProjetos() {
                             <button class="row-action-btn edit-btn" data-action="edit-projeto" data-id="${p.id}" title="Editar projeto">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9.5 1.5L12.5 4.5l-8.5 8.5L1 13l.5-2.5 8.5-8.5z"></path><path d="M7.5 3.5l3 3"></path></svg>
                             </button>
-                            <button class="row-action-btn delete-btn" data-action="delete-projeto" data-id="${p.id}" title="Arquivar projeto">
+                            <button class="row-action-btn delete-btn" data-action="delete-projeto" data-id="${p.id}" title="Excluir projeto">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 3.5h11M4.5 3.5V2h5v1.5M5 3.5l.7 8h2.6l.7-8"></path></svg>
                             </button>
                         </div>
@@ -1184,7 +1196,7 @@ document.getElementById("salvarProjetoBtn").addEventListener("click", async () =
 });
 
 // ============================================================
-// MODAL: ARQUIVAR PROJETO
+// MODAL: EXCLUIR PROJETO
 // ============================================================
 function abrirModalExcluirProjeto(id) {
     const projeto = projetos.find((p) => p.id === id);
@@ -1199,13 +1211,13 @@ document.getElementById("confirmDeleteProjetoBtn").addEventListener("click", asy
 
     const btn = document.getElementById("confirmDeleteProjetoBtn");
     btn.disabled = true;
-    btn.textContent = "Arquivando...";
+    btn.textContent = "Excluindo...";
 
     try {
         const resultado = await apiExcluirProjeto(projetosState.deleteId);
 
         if (!resultado.success) {
-            alert(resultado.message || "Não foi possível arquivar o projeto.");
+            alert(resultado.message || "Não foi possível excluir o projeto.");
             return;
         }
 
@@ -1217,7 +1229,7 @@ document.getElementById("confirmDeleteProjetoBtn").addEventListener("click", asy
         alert("Não foi possível conectar ao servidor.");
     } finally {
         btn.disabled = false;
-        btn.textContent = "Sim, arquivar";
+        btn.textContent = "Sim, excluir";
     }
 });
 
@@ -2304,7 +2316,7 @@ async function loadFinanceiro() {
         return;
     }
 
-    // A página atual ficou vazia (ex.: arquivou o único item da última página): volta para a última existente.
+    // A página atual ficou vazia (ex.: excluiu o único item da última página): volta para a última existente.
     if (dados.movimentacoes.length === 0 && financeiroState.pagina > 1 && dados.total > 0) {
         financeiroState.pagina = dados.total_paginas;
         return loadFinanceiro();
@@ -2334,7 +2346,7 @@ async function loadFinanceiro() {
                             <button class="row-action-btn edit-btn" data-action="edit-financeiro" data-id="${mov.id}" title="Editar movimentação">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9.5 1.5L12.5 4.5l-8.5 8.5L1 13l.5-2.5 8.5-8.5z"></path><path d="M7.5 3.5l3 3"></path></svg>
                             </button>
-                            <button class="row-action-btn delete-btn" data-action="delete-financeiro" data-id="${mov.id}" title="Arquivar movimentação">
+                            <button class="row-action-btn delete-btn" data-action="delete-financeiro" data-id="${mov.id}" title="Excluir movimentação">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 3.5h11M4.5 3.5V2h5v1.5M5 3.5l.7 8h2.6l.7-8"></path></svg>
                             </button>
                         </div>
@@ -2518,7 +2530,7 @@ document.getElementById("salvarFinanceiroBtn").addEventListener("click", async (
 });
 
 // ============================================================
-// MODAL: ARQUIVAR MOVIMENTAÇÃO FINANCEIRA
+// MODAL: EXCLUIR MOVIMENTAÇÃO FINANCEIRA
 // ============================================================
 function abrirModalExcluirFinanceiro(id) {
     const mov = financeiroState.movimentacoes.find((m) => m.id === id);
@@ -2533,13 +2545,13 @@ document.getElementById("confirmDeleteFinanceiroBtn").addEventListener("click", 
 
     const btn = document.getElementById("confirmDeleteFinanceiroBtn");
     btn.disabled = true;
-    btn.textContent = "Arquivando...";
+    btn.textContent = "Excluindo...";
 
     try {
         const resultado = await apiExcluirMovimentacaoFinanceira(financeiroState.deleteId);
 
         if (!resultado.success) {
-            alert(resultado.message || "Não foi possível arquivar a movimentação.");
+            alert(resultado.message || "Não foi possível excluir a movimentação.");
             return;
         }
 
@@ -2551,7 +2563,7 @@ document.getElementById("confirmDeleteFinanceiroBtn").addEventListener("click", 
         alert("Não foi possível conectar ao servidor.");
     } finally {
         btn.disabled = false;
-        btn.textContent = "Sim, arquivar";
+        btn.textContent = "Sim, excluir";
     }
 });
 
@@ -2616,7 +2628,7 @@ async function loadOrcamentos() {
         return;
     }
 
-    // A página atual ficou vazia (ex.: arquivou o último orçamento da última página)
+    // A página atual ficou vazia (ex.: excluiu o último orçamento da última página)
     if (dados.orcamentos.length === 0 && orcamentosState.pagina > 1 && dados.total > 0) {
         orcamentosState.pagina = dados.total_paginas;
         return loadOrcamentos();
@@ -2650,7 +2662,7 @@ async function loadOrcamentos() {
                             <button class="row-action-btn edit-btn" data-action="edit-orcamento" data-id="${orc.id}" title="Editar orçamento">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9.5 1.5L12.5 4.5l-8.5 8.5L1 13l.5-2.5 8.5-8.5z"></path><path d="M7.5 3.5l3 3"></path></svg>
                             </button>
-                            <button class="row-action-btn delete-btn" data-action="delete-orcamento" data-id="${orc.id}" title="Arquivar orçamento">
+                            <button class="row-action-btn delete-btn" data-action="delete-orcamento" data-id="${orc.id}" title="Excluir orçamento">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 3.5h11M4.5 3.5V2h5v1.5M5 3.5l.7 8h2.6l.7-8"></path></svg>
                             </button>
                         </div>
@@ -2820,7 +2832,7 @@ document.getElementById("salvarOrcamentoBtn").addEventListener("click", async ()
 });
 
 // ============================================================
-// MODAL: ARQUIVAR ORÇAMENTO
+// MODAL: EXCLUIR ORÇAMENTO
 // ============================================================
 function abrirModalExcluirOrcamento(id) {
     const orc = orcamentosState.orcamentos.find((o) => o.id === id);
@@ -2835,13 +2847,13 @@ document.getElementById("confirmDeleteOrcamentoBtn").addEventListener("click", a
 
     const btn = document.getElementById("confirmDeleteOrcamentoBtn");
     btn.disabled = true;
-    btn.textContent = "Arquivando...";
+    btn.textContent = "Excluindo...";
 
     try {
         const resultado = await apiExcluirOrcamento(orcamentosState.deleteId);
 
         if (!resultado.success) {
-            alert(resultado.message || "Não foi possível arquivar o orçamento.");
+            alert(resultado.message || "Não foi possível excluir o orçamento.");
             return;
         }
 
@@ -2853,7 +2865,7 @@ document.getElementById("confirmDeleteOrcamentoBtn").addEventListener("click", a
         alert("Não foi possível conectar ao servidor.");
     } finally {
         btn.disabled = false;
-        btn.textContent = "Sim, arquivar";
+        btn.textContent = "Sim, excluir";
     }
 });
 

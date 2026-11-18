@@ -39,6 +39,7 @@ class PublicacaoController
             'publicado_em' => $linha['publicado_em'],
             'status' => $linha['status'],
             'tempo_leitura' => $this->calcularTempoLeitura($linha['conteudo']),
+            'categoria_id' => isset($linha['categoria_id']) ? (int) $linha['categoria_id'] : null,
             'categoria' => $linha['categoria_nome'],
             'autor' => [
                 'id' => (int) $linha['autor_id'],
